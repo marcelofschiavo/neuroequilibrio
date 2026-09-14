@@ -11,7 +11,6 @@ import { Abertura } from "./slides/Abertura";
 import { RespiracaoColetiva } from "./slides/RespiracaoColetiva";
 import { Cena } from "./slides/Cena";
 import { Elenco } from "./slides/Elenco";
-import { QuizSlide, QuizReveladoSlide } from "./slides/Quiz";
 import { Fecho } from "./slides/Fecho";
 import { PALESTRANTE } from "@/conteudo/palestrante";
 import { Logo } from "@/components/ui/Logo";
@@ -22,8 +21,13 @@ export function Slide({ slide }: { slide: TipoSlide }) {
       return (
         <div className="palco-conteudo">
           <div className="grid w-full grid-cols-[1fr_auto] items-center gap-12">
-            <div className="flex flex-col gap-8">
-              <motion.h1 initial="entra" animate="ativo" variants={escreve} className="titulo text-palco-mega text-acento">
+            <div className="flex min-w-0 flex-col gap-8">
+              <motion.h1
+                initial="entra"
+                animate="ativo"
+                variants={escreve}
+                className="titulo text-palco-titulo text-acento"
+              >
                 {slide.titulo}
               </motion.h1>
               {slide.destaque && (
@@ -202,20 +206,6 @@ export function Slide({ slide }: { slide: TipoSlide }) {
       return (
         <div className="palco-conteudo">
           <RespiracaoColetiva titulo={slide.titulo} ciclos={slide.ciclos} />
-        </div>
-      );
-
-    case "quiz":
-      return (
-        <div className="palco-conteudo">
-          <QuizSlide slide={slide} />
-        </div>
-      );
-
-    case "quizRevelado":
-      return (
-        <div className="palco-conteudo">
-          <QuizReveladoSlide slide={slide} />
         </div>
       );
 

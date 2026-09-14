@@ -28,8 +28,6 @@ export type TipoSlide =
   | "grafico"
   | "exercicio"
   | "respiracao"
-  | "quiz"
-  | "quizRevelado"
   | "fecho";
 
 export type PontoGrafico = { rotulo: string; valor: number; destaque?: boolean };
@@ -66,8 +64,6 @@ export type Slide = {
   duracaoSugerida?: string;
   ciclos?: number;
 
-  // quiz
-  quizId?: string;
 
   // fecho
   url?: string;
@@ -414,15 +410,13 @@ export const BLOCOS: Bloco[] = [
     titulo: "Salve o dia do personagem",
     duracaoMin: 9,
     slides: [
-      { id: "7.1", tipo: "titulo", titulo: "Agora é sua vez.", destaque: "4 perguntas. Vote com a mão." },
-      { id: "7.2", tipo: "quiz", quizId: "q1" },
-      { id: "7.2r", tipo: "quizRevelado", quizId: "q1" },
-      { id: "7.3", tipo: "quiz", quizId: "q2" },
-      { id: "7.3r", tipo: "quizRevelado", quizId: "q2" },
-      { id: "7.4", tipo: "quiz", quizId: "q3" },
-      { id: "7.4r", tipo: "quizRevelado", quizId: "q3" },
-      { id: "7.5", tipo: "quiz", quizId: "q4" },
-      { id: "7.5r", tipo: "quizRevelado", quizId: "q4" },
+      {
+        id: "7.1",
+        tipo: "titulo",
+        titulo: "Agora é sua vez.",
+        destaque: "Abra o Kahoot — 4 perguntas, uma pra cada personagem do dia.",
+        notaApresentador: "Dinâmica roda no Kahoot da EDC, não neste deck. Trocar pra tela/app do Kahoot aqui.",
+      },
     ],
   },
   {

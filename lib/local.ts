@@ -65,17 +65,6 @@ export function gravarPlanoDia(plano: PlanoDia): void {
   escrever("plano-dia", plano);
 }
 
-/* ---------------- quiz final ---------------- */
-
-export type ResultadoQuiz = { acertos: number; total: number; concluidoEm: string };
-
-export function lerResultadoQuiz(): ResultadoQuiz | null {
-  return ler<ResultadoQuiz | null>("quiz-resultado", null);
-}
-export function gravarResultadoQuiz(resultado: ResultadoQuiz): void {
-  escrever("quiz-resultado", resultado);
-}
-
 /* ---------------- apagar tudo ---------------- */
 
 export function apagarTudoLocal(): void {

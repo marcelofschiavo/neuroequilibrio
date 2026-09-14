@@ -4,9 +4,15 @@ import type { Personagem } from "./personagens";
 /**
  * Quiz final — perguntas e respostas corretas da Priscila, sem alteração.
  *
- * `explicacao` é a versão alinhada à literatura atual (usada no palco e na
- * trilha). `explicacaoOriginal` guarda o texto enviado pela palestrante, para
- * ela comparar e aprovar. // TODO(palestrante): aprovar os ajustes das explicações.
+ * A dinâmica ao vivo roda no Kahoot da EDC durante a SIPAT, não neste site —
+ * por isso nada daqui é renderizado em `/palco` nem em `/trilha` (as
+ * respostas não podem vazar antes do Kahoot). Este arquivo é só a fonte
+ * pronta pra importar as perguntas no Kahoot e, depois do evento, pra
+ * eventualmente publicar a explicação revisada na trilha.
+ *
+ * `explicacao` é a versão alinhada à literatura atual. `explicacaoOriginal`
+ * guarda o texto enviado pela palestrante, para ela comparar e aprovar.
+ * // TODO(palestrante): aprovar os ajustes das explicações.
  */
 
 export type Alternativa = "A" | "B" | "C" | "D";
