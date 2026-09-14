@@ -16,7 +16,7 @@ export function Fecho({ slide }: { slide: Slide }) {
 
   return (
     <div className="grid w-full grid-cols-[1fr_auto] items-center gap-14">
-      <div className="flex flex-col gap-7">
+      <div className="flex min-w-0 flex-col gap-7">
         <motion.h1 initial="entra" animate="ativo" variants={degrau} className="titulo text-palco-titulo text-acento">
           {slide.titulo}
         </motion.h1>

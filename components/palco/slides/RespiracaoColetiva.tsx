@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
+import { TrilhaNota } from "../TrilhaNota";
 
 /** Suspiro fisiológico: duas inspirações (a 2ª curta) + uma expiração longa. */
 const CICLO = 9; // inspira 2s + inspira curto 1s + solta 6s
@@ -16,7 +17,15 @@ function faseDe(segundoNoCiclo: number) {
  * A sala inteira faz o suspiro fisiológico junto. Um cronômetro a partir da
  * entrada no slide deriva a fase — texto e círculo nunca saem de sincronia.
  */
-export function RespiracaoColetiva({ titulo, ciclos = 3 }: { titulo?: string; ciclos?: number }) {
+export function RespiracaoColetiva({
+  titulo,
+  ciclos = 3,
+  trilhaHref,
+}: {
+  titulo?: string;
+  ciclos?: number;
+  trilhaHref?: string;
+}) {
   const [segundos, setSegundos] = useState(0);
 
   useEffect(() => {
@@ -30,12 +39,13 @@ export function RespiracaoColetiva({ titulo, ciclos = 3 }: { titulo?: string; ci
 
   return (
     <div className="grid w-full grid-cols-[1fr_auto] items-center gap-12">
-      <div className="flex flex-col gap-6">
+      <div className="flex min-w-0 flex-col gap-6">
         {titulo && <h2 className="titulo text-palco-titulo text-acento">{titulo}</h2>}
         <p className="text-palco-titulo font-black leading-none text-ink">{terminou ? "Pronto." : fase.rotulo}</p>
         <p className="dados text-palco-nota text-ink-2">
           {terminou ? "O que mudou no corpo?" : `ciclo ${cicloAtual} de ${ciclos}`}
         </p>
+        {terminou && <TrilhaNota href={trilhaHref} />}
       </div>
       <div className="flex h-[52vmin] w-[52vmin] items-center justify-center">
         <motion.div

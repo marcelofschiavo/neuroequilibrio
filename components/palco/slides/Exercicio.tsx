@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import { degrau, escada } from "@/lib/motion";
+import { TrilhaNota } from "../TrilhaNota";
 import type { Slide } from "@/conteudo/blocos";
 
 /**
@@ -43,6 +44,7 @@ export function Exercicio({ slide }: { slide: Slide }) {
             {slide.instrucao}
           </motion.p>
         )}
+        <TrilhaNota href={slide.trilhaHref} />
       </motion.div>
     </div>
   );

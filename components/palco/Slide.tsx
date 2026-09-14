@@ -12,6 +12,8 @@ import { RespiracaoColetiva } from "./slides/RespiracaoColetiva";
 import { Cena } from "./slides/Cena";
 import { Elenco } from "./slides/Elenco";
 import { Fecho } from "./slides/Fecho";
+import { Cerebro } from "./Cerebro";
+import { TrilhaNota } from "./TrilhaNota";
 import { PALESTRANTE } from "@/conteudo/palestrante";
 import { Logo } from "@/components/ui/Logo";
 
@@ -129,6 +131,7 @@ export function Slide({ slide }: { slide: TipoSlide }) {
               </motion.li>
             ))}
           </motion.ul>
+          <TrilhaNota href={slide.trilhaHref} />
         </div>
       );
 
@@ -205,7 +208,19 @@ export function Slide({ slide }: { slide: TipoSlide }) {
     case "respiracao":
       return (
         <div className="palco-conteudo">
-          <RespiracaoColetiva titulo={slide.titulo} ciclos={slide.ciclos} />
+          <RespiracaoColetiva titulo={slide.titulo} ciclos={slide.ciclos} trilhaHref={slide.trilhaHref} />
+        </div>
+      );
+
+    case "cerebro":
+      return (
+        <div className="palco-conteudo items-center gap-8">
+          {slide.titulo && (
+            <motion.h2 initial="entra" animate="ativo" variants={escreve} className="titulo text-palco-titulo text-acento">
+              {slide.titulo}
+            </motion.h2>
+          )}
+          <Cerebro tamanho={420} interativo />
         </div>
       );
 

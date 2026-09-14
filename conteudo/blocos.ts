@@ -28,6 +28,7 @@ export type TipoSlide =
   | "grafico"
   | "exercicio"
   | "respiracao"
+  | "cerebro"
   | "fecho";
 
 export type PontoGrafico = { rotulo: string; valor: number; destaque?: boolean };
@@ -58,12 +59,15 @@ export type Slide = {
   fonteIds?: string[];
   pontos?: PontoGrafico[];
   unidadeGrafico?: string;
+  /** Acende essa região no cérebro que ilustra o insight (ver components/palco/Cerebro.tsx). */
+  regiaoCerebro?: "preFrontal" | "limbico" | "troncoCerebral" | "ganglios";
 
   // exercicio / respiração
   instrucao?: string;
   duracaoSugerida?: string;
   ciclos?: number;
-
+  /** Rota da trilha com a versão pra praticar depois — vira uma nota discreta na tela. */
+  trilhaHref?: string;
 
   // fecho
   url?: string;
@@ -150,6 +154,7 @@ export const BLOCOS: Bloco[] = [
         destaque: "O cérebro oscila em ciclos — os ritmos ultradianos — ao longo do dia.",
         unidade: "Estimativa clássica: ~90 minutos por ciclo, com variação grande entre pessoas.",
         fonteIds: ["kleitman1982", "warm2008"],
+        regiaoCerebro: "troncoCerebral",
       },
       {
         id: "2.4",
@@ -172,6 +177,7 @@ export const BLOCOS: Bloco[] = [
         duracaoSugerida: "40s",
         notaApresentador: "Conduzir junto. Depois: 'sentiram a diferença?' — ligar ao estudo de Lee (2015), 40s de vista verde.",
         fonteIds: ["lee2015"],
+        trilhaHref: "/trilha/micropausa",
       },
       {
         id: "2.6",
@@ -221,6 +227,7 @@ export const BLOCOS: Bloco[] = [
         destaque: "E ele fica mais caro de usar depois de um dia de trabalho cognitivo intenso.",
         unidade: "Um estudo de 2022 mediu acúmulo de um subproduto metabólico (glutamato) no pré-frontal ao fim do expediente — e as escolhas migraram para a opção de menor esforço.",
         fonteIds: ["wiehler2022"],
+        regiaoCerebro: "preFrontal",
       },
       {
         id: "3.4",
@@ -249,6 +256,7 @@ export const BLOCOS: Bloco[] = [
           "Rotina e tarefas automáticas depois do vale",
           "Regras prévias reduzem microdecisões (\"e-mail só às 11h e 16h\")",
         ],
+        trilhaHref: "/trilha/plano",
       },
       {
         id: "3.6",
@@ -286,6 +294,7 @@ export const BLOCOS: Bloco[] = [
         destaque: "É por isso que \"pensa positivo\" não funciona no calor da hora.",
         unidade: "Mesmo um estresse agudo leve já reduz o controle deliberado e fortalece respostas automáticas.",
         fonteIds: ["arnsten2009"],
+        regiaoCerebro: "limbico",
       },
       {
         id: "4.4",
@@ -294,6 +303,7 @@ export const BLOCOS: Bloco[] = [
         destaque: "Por isso é a porta de entrada mais rápida para acalmar o corpo.",
         unidade: "O suspiro — duas inspirações, a segunda curtinha, e uma expiração longa — reabre alvéolos e ativa o freio vagal do coração.",
         fonteIds: ["li2016", "russo2017"],
+        regiaoCerebro: "troncoCerebral",
       },
       {
         id: "4.5",
@@ -302,6 +312,7 @@ export const BLOCOS: Bloco[] = [
         ciclos: 3,
         notaApresentador: "Momento de pico emocional da palestra. Conduzir em voz baixa. Depois: 'o que mudou no corpo?' Citar Balban et al. 2023 — 5 min/dia por 1 mês melhoraram humor.",
         fonteIds: ["balban2023"],
+        trilhaHref: "/trilha/suspiro",
       },
       {
         id: "4.6",
@@ -347,6 +358,7 @@ export const BLOCOS: Bloco[] = [
         destaque: "Ele alterna — e cada troca cobra um pedágio de tempo e precisão.",
         unidade: "Parte da atenção fica presa na tarefa anterior: o \"resíduo de atenção\".",
         fonteIds: ["rubinstein2001", "leroy2009"],
+        regiaoCerebro: "preFrontal",
       },
       {
         id: "5.5",
@@ -369,6 +381,7 @@ export const BLOCOS: Bloco[] = [
           "Uma urgência de cada vez, não todas juntas",
           "Notificações fora do bloco de foco",
         ],
+        trilhaHref: "/trilha/plano",
       },
       {
         id: "5.7",
@@ -429,10 +442,16 @@ export const BLOCOS: Bloco[] = [
         id: "8.1",
         tipo: "titulo",
         titulo: "Pergunte à Priscila.",
-        notaApresentador: "Ferramentas do dia na tela enquanto ela responde. Atalhos de apoio: café/adenosina, sono/decisão, TDAH, como falar com o gestor.",
+        notaApresentador: "Perguntas abertas. O cérebro interativo do próximo slide fica de apoio visual — clique numa região se alguém perguntar 'onde isso acontece?'.",
       },
       {
         id: "8.2",
+        tipo: "cerebro",
+        titulo: "Onde, no cérebro?",
+        notaApresentador: "Clicável ao vivo — mouse liberado no palco. Use se a pergunta pedir 'em que parte do cérebro isso acontece'.",
+      },
+      {
+        id: "8.3",
         tipo: "fecho",
         titulo: "Cada dia é um experimento.",
         destaque: "Ritmo, energia, regulação, foco — teste um de cada vez.",

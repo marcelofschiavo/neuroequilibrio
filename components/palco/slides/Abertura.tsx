@@ -14,10 +14,10 @@ export function Abertura({
   titulo: string;
 }) {
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex min-w-0 flex-col gap-6">
       <div className="overflow-hidden">
         <motion.span
-          className="dados block font-black leading-none text-acento text-palco-mega"
+          className="dados block font-black leading-none text-acento text-palco-nota"
           initial={{ y: "100%" }}
           animate={{ y: 0 }}
           transition={{ duration: 0.55, ease: ENTRADA }}
@@ -26,14 +26,14 @@ export function Abertura({
         </motion.span>
       </div>
       <motion.div
-        className="h-2 w-[42vw] rounded-full bg-acento"
+        className="h-2 w-[42vw] max-w-full rounded-full bg-acento"
         style={{ transformOrigin: "left" }}
         initial={{ scaleX: 0 }}
         animate={{ scaleX: 1 }}
         transition={{ duration: 0.7, delay: 0.2, ease: ENTRADA }}
       />
       <motion.h2
-        className="titulo text-palco-mega text-ink"
+        className="titulo text-palco-titulo text-ink"
         initial={{ opacity: 0, clipPath: "inset(-30% 100% -30% 0)" }}
         animate={{ opacity: 1, clipPath: "inset(-30% -2% -30% 0)" }}
         transition={{ duration: 0.8, delay: 0.4, ease: ENTRADA }}

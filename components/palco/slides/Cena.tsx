@@ -1,13 +1,15 @@
 "use client";
 
 import { motion } from "motion/react";
-import { degrau, escada, ambiente } from "@/lib/motion";
+import { degrau, escada } from "@/lib/motion";
 import { personagem } from "@/conteudo/personagens";
+import { Ilustracao } from "../Ilustracao";
 import type { Slide } from "@/conteudo/blocos";
 
 /**
  * A cena de um personagem: hora grande à esquerda (linha do tempo do dia),
  * situação e — quando há — o pensamento dele, como se fosse dito baixinho.
+ * À direita, uma ilustração mockada (ícone flat, não foto) do momento.
  */
 export function Cena({ slide }: { slide: Slide }) {
   const p = slide.personagemId ? personagem(slide.personagemId) : undefined;
@@ -15,14 +17,10 @@ export function Cena({ slide }: { slide: Slide }) {
 
   return (
     <div className="relative w-full">
-      <motion.div
-        aria-hidden
-        className="pointer-events-none absolute right-[4vw] top-1/2 h-[40vmin] w-[40vmin] -translate-y-1/2 rounded-full border-[1.1vmin] border-acento"
-        initial="ativo"
-        animate="ativo"
-        variants={ambiente}
-      />
-      <motion.div initial="entra" animate="ativo" variants={escada(0.1, 0.05)} className="relative flex max-w-[66vw] flex-col gap-5">
+      <div className="pointer-events-none absolute right-[3vw] top-1/2 -translate-y-1/2 opacity-90">
+        <Ilustracao personagemId={p.id} tamanho={280} />
+      </div>
+      <motion.div initial="entra" animate="ativo" variants={escada(0.1, 0.05)} className="relative flex max-w-[62vw] flex-col gap-5">
         <motion.div variants={degrau} className="flex items-baseline gap-4">
           <span className="dados font-black leading-none text-acento text-palco-mega">{slide.hora}</span>
           <span className="text-palco-nota font-semibold text-ink-2">

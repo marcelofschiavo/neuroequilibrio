@@ -37,11 +37,11 @@ export function Grafico({ slide }: { slide: Slide }) {
           const fracao = ponto.valor / max;
           return (
             <motion.div key={ponto.rotulo} variants={degrau} className="flex flex-col gap-2">
-              <div className="flex items-baseline justify-between gap-4">
-                <span className="text-palco-corpo font-bold text-ink">
+              <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                <span className="min-w-0 text-palco-corpo font-bold text-ink">
                   {ponto.rotulo}
                 </span>
-                <span className="dados text-palco-corpo font-black text-acento">
+                <span className="dados shrink-0 text-palco-corpo font-black text-acento">
                   {ponto.valor.toLocaleString("pt-BR")}
                 </span>
               </div>
