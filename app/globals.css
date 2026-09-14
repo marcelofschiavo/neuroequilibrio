@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Fontes carregadas via next/font/google em app/layout.tsx:
+   --font-montserrat · --font-source-sans · --font-plex-mono
+   ============================================================ */
+
+/* ---------- TEMA LEITURA (padrão) — cinza EDC sobre off-white ---------- */
+:root {
+  --bg:        #F7F7F6;
+  --surface:   #FFFFFF;
+  --surface-2: #EFEFEE;
+  --ink:       #29292B;
+  --ink-2:     #58595B;
+  --muted:     #8A8B8D;
+  --line:      #DEDEDC;
+  --line-2:    #C7C7C5;
+  --acento:    #4E9A2A;
+  --acento-2:  #3E7A21;
+  --acento-wash:#E9F4E1;
+  --alerta:    #B8542C;
+  --alerta-wash:#F6E4DA;
+  --focus:     #4E9A2A;
+  color-scheme: light;
+}
+
+/* ---------- TEMA PALCO — a parede grafite/verde EDC ---------- */
+[data-tema="palco"] {
+  --bg:        #1E1F21;
+  --surface:   #29292B;
+  --surface-2: #313234;
+  --ink:       #F5F5F4;
+  --ink-2:     #C7C8C6;
+  --muted:     #8F9092;
+  --line:      #3A3B3D;
+  --line-2:    #4A4B4D;
+  --acento:    #6CC331;
+  --acento-2:  #58A825;
+  --acento-wash:#233420;
+  --alerta:    #E98C5C;
+  --alerta-wash:#3A2A20;
+  --focus:     #6CC331;
+  color-scheme: dark;
+}
+
+/* ---------- CONTRASTE MÁXIMO (tecla C) ---------- */
+[data-tema="palco"][data-contraste="max"] {
+  --bg:        #000000;
+  --surface:   #000000;
+  --surface-2: #000000;
+  --ink:       #FFFFFF;
+  --ink-2:     #FFFFFF;
+  --muted:     #7CFF3B;
+  --line:      #7CFF3B;
+  --line-2:    #7CFF3B;
+  --acento:    #7CFF3B;
+  --acento-2:  #7CFF3B;
+  --acento-wash:#000000;
+}
+
+/*
+ * @theme (não "inline"): precisa emitir variáveis reais em :root para o
+ * CSS puro e qualquer var() direto conseguirem ler --text-palco-* e
+ * --color-*. "inline" faria o Tailwind embutir o valor só dentro das
+ * classes utilitárias, sem expor a variável em si.
+ */
+@theme {
+  --color-bg:          var(--bg);
+  --color-surface:     var(--surface);
+  --color-surface-2:   var(--surface-2);
+  --color-ink:         var(--ink);
+  --color-ink-2:       var(--ink-2);
+  --color-muted:       var(--muted);
+  --color-line:        var(--line);
+  --color-line-2:      var(--line-2);
+  --color-acento:      var(--acento);
+  --color-acento-2:    var(--acento-2);
+  --color-acento-wash: var(--acento-wash);
+  --color-alerta:      var(--alerta);
+  --color-alerta-wash: var(--alerta-wash);
+
+  --font-corpo:  var(--font-source-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-titulo: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  --font-dados:  var(--font-plex-mono), ui-monospace, monospace;
+
+  --text-palco-mega:   clamp(72px, 11vw, 160px);
+  --text-palco-titulo: clamp(48px, 6.4vw, 96px);
+  --text-palco-corpo:  clamp(30px, 3.4vw, 52px);
+  --text-palco-nota:   clamp(20px, 2vw, 30px);
+  --text-palco-rodape: clamp(15px, 1.4vw, 22px);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-corpo);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+[data-tema="palco"] body {
+  overflow: hidden;
+  user-select: none;
+  cursor: none;
+}
+[data-tema="palco"][data-cursor="on"] body { cursor: default; }
+
+.palco-grade {
+  display: grid;
+  grid-template-rows: minmax(0, 66fr) minmax(0, 34fr);
+  height: 100dvh;
+  padding: 4vmin 6vmin;
+  gap: 0;
+}
+/* "safe center": quando o conteúdo é mais alto que a área, alinha pelo topo
+   em vez de cortar o título pra fora da tela. */
+.palco-conteudo { min-height: 0; display: flex; flex-direction: column; justify-content: safe center; }
+.palco-rodape {
+  align-self: end;
+  font-family: var(--font-dados);
+  font-size: var(--text-palco-rodape);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: flex; justify-content: space-between; align-items: center; gap: 2rem;
+}
+
+h1, h2, h3 { text-wrap: balance; margin: 0; }
+
+/* Título de destaque — sans geométrica em itálico, ecoando o traço do
+   logo EDC (a barra verde inclinada que corta as letras). */
+.titulo { font-family: var(--font-titulo); font-style: italic; font-weight: 800; line-height: .98; }
+.dados  { font-family: var(--font-dados); font-variant-numeric: tabular-nums; }
+
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; border-radius: 3px; }
+
+[data-blackout="on"] .palco-grade { opacity: 0; transition: opacity 180ms linear; }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: var(--line-2); border-radius: 99px; }
+::-webkit-scrollbar-track { background: transparent; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+}

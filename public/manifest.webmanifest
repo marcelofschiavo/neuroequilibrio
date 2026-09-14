@@ -1,0 +1,14 @@
+{
+  "name": "Neurociências & Equilíbrio Emocional · EDC Group",
+  "short_name": "Neuroequilíbrio",
+  "description": "SIPAT EDC Group 2026 — palestra e trilha de conteúdo com Priscila Ramos.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1E1F21",
+  "theme_color": "#1E1F21",
+  "lang": "pt-BR",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
