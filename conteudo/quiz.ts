@@ -36,7 +36,7 @@ export const QUIZ: PerguntaQuiz[] = [
   {
     id: "q1",
     personagem: "rafael",
-    gancho: "Rafael, 11h40, relendo o mesmo parágrafo pela quarta vez.",
+    gancho: "Rafael, 11h40, relendo o mesmo currículo pela quarta vez.",
     pergunta:
       "Muitos profissionais tentam manter o foco ininterrupto por 4 ou 5 horas seguidas. Do ponto de vista da neurociência da produtividade, por que essa estratégia costuma falhar?",
     alternativas: {
@@ -60,7 +60,7 @@ export const QUIZ: PerguntaQuiz[] = [
   {
     id: "q2",
     personagem: "luciana",
-    gancho: "Luciana, 15h, travada diante do orçamento depois de uma manhã de incêndios.",
+    gancho: "Luciana, 15h, travada diante da escala do cliente depois de uma manhã de incêndios.",
     pergunta:
       "Um colaborador passa a manhã inteira respondendo dezenas de mensagens curtas e apagando pequenos incêndios. À tarde, ele não consegue tomar uma decisão estratégica importante. Como a neurociência explica esse fenômeno?",
     alternativas: {

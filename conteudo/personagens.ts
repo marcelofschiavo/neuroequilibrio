@@ -1,6 +1,9 @@
 /**
  * Os quatro personagens do dia. Composições fictícias — não representam
  * nenhuma pessoa real. Cada um carrega um dos quatro temas do quiz final.
+ *
+ * Cargos alinhados à operação real da EDC Group (RH, terceirização,
+ * recrutamento, BPO, gestão de contas) — não escritório genérico.
  */
 
 export type Personagem = {
@@ -17,7 +20,7 @@ export const PERSONAGENS: Personagem[] = [
   {
     id: "rafael",
     nome: "Rafael",
-    papel: "Analista, 34",
+    papel: "Analista de Recrutamento e Seleção, 34",
     hora: "8h",
     tema: "Atenção tem maré",
     ferramenta: "Micro-recuperação",
@@ -26,7 +29,7 @@ export const PERSONAGENS: Personagem[] = [
   {
     id: "luciana",
     nome: "Luciana",
-    papel: "Coordenadora, 41",
+    papel: "Coordenadora de Operações, 41",
     hora: "9h",
     tema: "Decisão tem custo",
     ferramenta: "Arquitetura de decisão",
@@ -35,7 +38,7 @@ export const PERSONAGENS: Personagem[] = [
   {
     id: "beatriz",
     nome: "Beatriz",
-    papel: "Atendimento, 28",
+    papel: "Analista de Relacionamento, 28",
     hora: "14h",
     tema: "O corpo chega antes",
     ferramenta: "Suspiro fisiológico",
@@ -44,7 +47,7 @@ export const PERSONAGENS: Personagem[] = [
   {
     id: "marcos",
     nome: "Marcos",
-    papel: "Gerente comercial, 45",
+    papel: "Gerente de Contas, 45",
     hora: "16h",
     tema: "Uma coisa de cada vez",
     ferramenta: "Blocos de monotarefa",
