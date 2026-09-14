@@ -5,16 +5,25 @@
    --font-montserrat · --font-source-sans · --font-plex-mono
    ============================================================ */
 
-/* ---------- TEMA LEITURA (padrão) — cinza EDC sobre off-white ---------- */
+/*
+ * Cores oficiais medidas direto em edcgroup.com.br (não só o logo):
+ * verde-petróleo #005A45 (fundo/marca) e um lima #DBFF00 (CTA do site).
+ * Usamos o petróleo como base do palco escuro — é o que a EDC usa de
+ * verdade, não um grafite neutro genérico — e o verde do logo como
+ * acento (mais legível a distância que o lima, e já usado em toda a
+ * identidade: certificado, ícones, PDF).
+ */
+
+/* ---------- TEMA LEITURA (padrão) — cinza EDC sobre off-white, com um toque de petróleo ---------- */
 :root {
-  --bg:        #F7F7F6;
+  --bg:        #F6F8F6;
   --surface:   #FFFFFF;
-  --surface-2: #EFEFEE;
-  --ink:       #29292B;
-  --ink-2:     #58595B;
-  --muted:     #8A8B8D;
-  --line:      #DEDEDC;
-  --line-2:    #C7C7C5;
+  --surface-2: #ECF1EF;
+  --ink:       #0F2A24;
+  --ink-2:     #3E5850;
+  --muted:     #7E938C;
+  --line:      #DCE6E2;
+  --line-2:    #C3D2CC;
   --acento:    #4E9A2A;
   --acento-2:  #3E7A21;
   --acento-wash:#E9F4E1;
@@ -24,26 +33,45 @@
   color-scheme: light;
 }
 
-/* ---------- TEMA PALCO — a parede grafite/verde EDC ---------- */
+/* ---------- TEMA PALCO ESCURO (padrão) — o verde-petróleo real da EDC ---------- */
 [data-tema="palco"] {
-  --bg:        #1E1F21;
-  --surface:   #29292B;
-  --surface-2: #313234;
-  --ink:       #F5F5F4;
-  --ink-2:     #C7C8C6;
-  --muted:     #8F9092;
-  --line:      #3A3B3D;
-  --line-2:    #4A4B4D;
+  --bg:        #072B22;
+  --surface:   #0E3B2E;
+  --surface-2: #134634;
+  --ink:       #F5F7F5;
+  --ink-2:     #C4D6CD;
+  --muted:     #7FA69A;
+  --line:      #1C5642;
+  --line-2:    #24684F;
   --acento:    #6CC331;
   --acento-2:  #58A825;
-  --acento-wash:#233420;
+  --acento-wash:#123B2B;
   --alerta:    #E98C5C;
   --alerta-wash:#3A2A20;
   --focus:     #6CC331;
   color-scheme: dark;
 }
 
-/* ---------- CONTRASTE MÁXIMO (tecla C) ---------- */
+/* ---------- TEMA PALCO CLARO (tecla L) — mesma marca, sala muito iluminada ---------- */
+[data-tema="palco"][data-claro="on"] {
+  --bg:        #F3F7F2;
+  --surface:   #FFFFFF;
+  --surface-2: #E6EFE4;
+  --ink:       #0B2E24;
+  --ink-2:     #2E4A40;
+  --muted:     #6B8177;
+  --line:      #D2E1CE;
+  --line-2:    #B9CFB3;
+  --acento:    #3E7A21;
+  --acento-2:  #2F5E19;
+  --acento-wash:#E3F0DE;
+  --alerta:    #B8542C;
+  --alerta-wash:#F6E4DA;
+  --focus:     #3E7A21;
+  color-scheme: light;
+}
+
+/* ---------- CONTRASTE MÁXIMO (tecla C) — sempre por cima, claro ou escuro ---------- */
 [data-tema="palco"][data-contraste="max"] {
   --bg:        #000000;
   --surface:   #000000;
@@ -56,6 +84,7 @@
   --acento:    #7CFF3B;
   --acento-2:  #7CFF3B;
   --acento-wash:#000000;
+  color-scheme: dark;
 }
 
 /*
@@ -132,6 +161,12 @@ h1, h2, h3 { text-wrap: balance; margin: 0; }
    logo EDC (a barra verde inclinada que corta as letras). */
 .titulo { font-family: var(--font-titulo); font-style: italic; font-weight: 800; line-height: .98; }
 .dados  { font-family: var(--font-dados); font-variant-numeric: tabular-nums; }
+
+/* Troca de logo por tema do palco — ver components/ui/Logo.tsx § LogoPalco. */
+.logo-clara { display: none; }
+.logo-escura { display: block; }
+[data-claro="on"] .logo-clara { display: block; }
+[data-claro="on"] .logo-escura { display: none; }
 
 :focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; border-radius: 3px; }
 

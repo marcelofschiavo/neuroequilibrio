@@ -25,6 +25,7 @@ export function MotorPalco() {
   const [direcao, setDirecao] = useState(1);
   const [blackout, setBlackout] = useState(false);
   const [contraste, setContraste] = useState(false);
+  const [claro, setClaro] = useState(false);
   const [animOff, setAnimOff] = useState(false);
   const [notasOn, setNotasOn] = useState(false);
 
@@ -81,6 +82,10 @@ export function MotorPalco() {
         case "C":
           setContraste((c) => !c);
           break;
+        case "l":
+        case "L":
+          setClaro((l) => !l);
+          break;
         case "a":
         case "A":
           setAnimOff((a) => !a);
@@ -103,11 +108,14 @@ export function MotorPalco() {
     else raiz.removeAttribute("data-contraste");
     if (blackout) raiz.setAttribute("data-blackout", "on");
     else raiz.removeAttribute("data-blackout");
+    if (claro) raiz.setAttribute("data-claro", "on");
+    else raiz.removeAttribute("data-claro");
     return () => {
       raiz.removeAttribute("data-contraste");
       raiz.removeAttribute("data-blackout");
+      raiz.removeAttribute("data-claro");
     };
-  }, [contraste, blackout]);
+  }, [contraste, blackout, claro]);
 
   if (!montado) return <div className="min-h-screen bg-bg" />;
 

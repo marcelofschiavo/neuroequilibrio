@@ -4,6 +4,8 @@ import { PERSONAGENS } from "@/conteudo/personagens";
 import { referencia } from "@/conteudo/referencias";
 import { MarcarConcluido } from "@/components/trilha/MarcarConcluido";
 import { Logo } from "@/components/ui/Logo";
+import { Ilustracao } from "@/components/palco/Ilustracao";
+import { Cerebro } from "@/components/palco/Cerebro";
 
 export default function PaginaReveja() {
   const blocosPersonagens = BLOCOS.filter((b) => ["rafael", "luciana", "beatriz", "marcos"].includes(b.id));
@@ -26,10 +28,10 @@ export default function PaginaReveja() {
           const listas = bloco.slides.filter((s) => s.tipo === "lista");
           return (
             <section key={bloco.id} className="border-t border-line pt-8">
-              <div className="flex items-center gap-3">
-                <span className="dados flex h-10 w-10 items-center justify-center rounded-full border-2 border-acento text-lg font-black text-acento">
-                  {p.inicial}
-                </span>
+              <div className="flex items-center gap-4">
+                <div className="shrink-0 opacity-90">
+                  <Ilustracao personagemId={p.id} tamanho={64} />
+                </div>
                 <div>
                   <p className="font-bold text-ink">{p.nome} · {p.papel}</p>
                   <p className="text-sm text-muted">{p.tema}</p>
@@ -47,14 +49,21 @@ export default function PaginaReveja() {
               </div>
 
               {insights.map((ins) => (
-                <div key={ins.id} className="mt-4">
-                  {ins.titulo && <p className="font-bold text-ink">{ins.titulo}</p>}
-                  {ins.destaque && <p className="text-acento-2 font-semibold">{ins.destaque}</p>}
-                  {ins.unidade && <p className="mt-1 text-sm text-ink-2">{ins.unidade}</p>}
-                  {!!ins.fonteIds?.length && (
-                    <p className="mt-1 text-xs text-muted">
-                      fonte: {ins.fonteIds.map((id) => referencia(id).curta).join(" · ")}
-                    </p>
+                <div key={ins.id} className="mt-4 flex items-start gap-4">
+                  <div className="min-w-0 flex-1">
+                    {ins.titulo && <p className="font-bold text-ink">{ins.titulo}</p>}
+                    {ins.destaque && <p className="text-acento-2 font-semibold">{ins.destaque}</p>}
+                    {ins.unidade && <p className="mt-1 text-sm text-ink-2">{ins.unidade}</p>}
+                    {!!ins.fonteIds?.length && (
+                      <p className="mt-1 text-xs text-muted">
+                        fonte: {ins.fonteIds.map((id) => referencia(id).curta).join(" · ")}
+                      </p>
+                    )}
+                  </div>
+                  {ins.regiaoCerebro && (
+                    <div className="hidden shrink-0 sm:block">
+                      <Cerebro regiaoAtiva={ins.regiaoCerebro} tamanho={110} />
+                    </div>
                   )}
                 </div>
               ))}

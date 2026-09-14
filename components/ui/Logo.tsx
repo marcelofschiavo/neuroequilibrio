@@ -20,6 +20,25 @@ export function Logo({ tamanho = 40, branco = false }: { tamanho?: number; branc
 }
 
 /**
+ * Logo do palco: troca sozinha entre a versão branca (tema escuro) e a
+ * colorida (tema claro) via CSS puro, seguindo o atributo `data-claro`
+ * que o MotorPalco põe no `<html>` — sem precisar passar o estado por
+ * props através de Rodape/Slide. Ver a regra `.logo-*` em globals.css.
+ */
+export function LogoPalco({ tamanho = 40 }: { tamanho?: number }) {
+  return (
+    <span className="relative inline-block" style={{ height: tamanho, width: tamanho * (3360 / 1890) }}>
+      <span className="logo-escura absolute inset-0">
+        <Logo tamanho={tamanho} branco />
+      </span>
+      <span className="logo-clara absolute inset-0">
+        <Logo tamanho={tamanho} />
+      </span>
+    </span>
+  );
+}
+
+/**
  * O traço: a barra verde horizontal que corta o "EDC" no logo. Vira elemento
  * recorrente — linha do tempo, divisória de bloco, progresso da trilha.
  */

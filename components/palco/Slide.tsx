@@ -15,7 +15,7 @@ import { Fecho } from "./slides/Fecho";
 import { Cerebro } from "./Cerebro";
 import { TrilhaNota } from "./TrilhaNota";
 import { PALESTRANTE } from "@/conteudo/palestrante";
-import { Logo } from "@/components/ui/Logo";
+import { LogoPalco } from "@/components/ui/Logo";
 
 export function Slide({ slide }: { slide: TipoSlide }) {
   switch (slide.tipo) {
@@ -53,7 +53,7 @@ export function Slide({ slide }: { slide: TipoSlide }) {
                 style={{ opacity: 0.16 }}
               />
               <div className="relative">
-                <Logo tamanho={140} branco />
+                <LogoPalco tamanho={140} />
               </div>
             </div>
           </div>
