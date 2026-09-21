@@ -18,14 +18,14 @@ export function CenaMarina({ slide }: { slide: Slide }) {
   const c = CENAS[slide.cena!];
   return (
     <div className="grid min-h-0 w-full flex-1 grid-cols-[1fr_auto] items-stretch gap-[4vmin]">
-      <motion.div initial="entra" animate="ativo" variants={escada(0.35, 0.1)} className="flex min-w-0 flex-col justify-center gap-[3.4vmin]">
-        <motion.p variants={degrau} className="dados text-palco-mega font-black leading-none text-acento">
+      <motion.div initial="entra" animate="ativo" variants={escada(0.35, 0.1)} className="flex min-w-0 flex-col justify-center gap-[2.6vmin]">
+        <motion.p variants={degrau} className="dados text-palco-titulo font-black leading-none text-acento">
           {c.hora}
         </motion.p>
-        <motion.p variants={degrau} className="text-palco-corpo font-bold leading-tight text-ink">
+        <motion.p variants={degrau} className="text-palco-texto font-bold leading-snug text-ink">
           {c.situacao}
         </motion.p>
-        <motion.p variants={degrau} className="titulo text-palco-corpo text-acento">
+        <motion.p variants={degrau} className="titulo text-palco-texto leading-snug text-acento">
           {c.pensamento}
         </motion.p>
       </motion.div>

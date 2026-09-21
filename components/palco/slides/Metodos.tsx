@@ -244,7 +244,7 @@ export function Monotarefa({ slide }: { slide: Slide }) {
             animate={{ scaleX: 1 }}
             transition={{ duration: 1.6, ease: "easeOut" }}
             style={{ transformOrigin: "left" }}
-            className="flex h-[13vh] w-full overflow-hidden rounded-xl border-[3px] border-ink"
+            className="flex h-[19vh] w-full overflow-hidden rounded-xl border-[3px] border-ink"
             role="img"
             aria-label="Barra longa, cortada por muitas faixas de troca de tarefa"
           >
@@ -261,7 +261,7 @@ export function Monotarefa({ slide }: { slide: Slide }) {
         {/* B: a monotarefa — mais curta; o pontilhado mostra o que sobra */}
         <div className="flex flex-col gap-2">
           <p className="text-palco-texto font-black text-acento">{MONOTAREFA.sequencial}</p>
-          <div className="relative flex h-[13vh] w-full">
+          <div className="relative flex h-[19vh] w-full">
             <div className="flex h-full w-[66%] overflow-hidden rounded-xl border-[3px] border-ink">
               {MONOTAREFA.blocos.map((b, i) => (
                 <motion.span
