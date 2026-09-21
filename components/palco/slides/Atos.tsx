@@ -138,10 +138,11 @@ function VisualCurva() {
   return (
     <div className="flex h-full min-h-0 flex-col gap-[1vmin]">
       <div className="flex min-h-0 flex-1 items-stretch gap-2">
-        <span className="dados text-palco-rodape font-bold text-ink-2 [text-orientation:mixed] [writing-mode:vertical-rl] rotate-180">
+        <span className="dados text-palco-rodape font-bold text-ink-2 [text-orientation:mixed] [writing-mode:vertical-rl] rotate-180 text-end">
           Capacidade de foco →
         </span>
-        <svg viewBox="0 0 900 250" className="h-full min-h-0 w-full flex-1" role="img" aria-label="Gráfico ilustrativo: o foco oscila em ondas naturais e, depois de horas sem pausa, cai e fica irregular, abaixo da expectativa de quatro horas sem levantar.">
+        <div className="flex min-h-0 w-full flex-1 flex-col">
+        <svg viewBox="0 0 900 250" className="min-h-0 w-full flex-1" role="img" aria-label="Gráfico ilustrativo: o foco oscila em ondas naturais e, depois de horas sem pausa, cai e fica irregular, abaixo da expectativa de quatro horas sem levantar.">
           <line x1="10" y1="10" x2="10" y2="240" stroke="var(--ink-2)" strokeWidth="4" />
           <line x1="10" y1="240" x2="890" y2="240" stroke="var(--ink-2)" strokeWidth="4" />
           <line x1="10" y1="30" x2="890" y2="30" stroke="var(--ink-2)" strokeWidth="4" strokeDasharray="14 10" />
@@ -166,6 +167,8 @@ function VisualCurva() {
             transition={{ duration: 2.6, delay: 1.5, ease: "linear" }}
           />
         </svg>
+        <span className="dados self-end text-palco-rodape font-bold text-ink-2">Tempo →</span>
+        </div>
       </div>
       <ul className="flex flex-wrap items-center gap-x-[2.4vmin] gap-y-1 text-palco-rodape font-semibold text-ink">
         {legenda.map((l) => (
@@ -177,7 +180,6 @@ function VisualCurva() {
         <li className="flex items-center gap-2">
           <span aria-hidden className="h-0 w-8 border-t-4 border-dashed border-ink-2" />A expectativa: 4 horas sem levantar
         </li>
-        <li className="ml-auto dados text-ink-2">Tempo →</li>
       </ul>
     </div>
   );
