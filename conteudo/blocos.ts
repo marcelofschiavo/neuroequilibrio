@@ -71,15 +71,15 @@ export const BLOCOS: Bloco[] = [
       { id: "1.1", tipo: "capa", titulo: "Neurociências & Equilíbrio Emocional" },
       {
         id: "1.2",
-        tipo: "relogio",
-        titulo: "O cérebro da Marina",
-        notaApresentador: "Apresente a personagem: Marina é fictícia, mas o dia dela é o de muita gente aqui. 30 s.",
-      },
-      {
-        id: "1.3",
         tipo: "palestrante",
         titulo: "Priscila Ramos",
         notaApresentador: "30 s: 14 anos de RH em multinacionais, hoje clínica, Care Coach BetterUp e Mindheart.",
+      },
+      {
+        id: "1.3",
+        tipo: "relogio",
+        titulo: "O cérebro da Marina",
+        notaApresentador: "Apresente a personagem: Marina é fictícia, mas o dia dela é o de muita gente aqui. 30 s.",
       },
       {
         id: "1.4",
@@ -182,15 +182,15 @@ export const BLOCOS: Bloco[] = [
     titulo: "O arco da Marina",
     duracaoMin: 5,
     slides: [
-      { id: "6.1", tipo: "arco", escuro: true, titulo: "O arco de transformação da Marina" },
-      { id: "6.2", tipo: "rifo", escuro: true, titulo: "O mapa R.I.F.O.", trilhaHref: "/trilha/rifo" },
+      { id: "6.1", tipo: "arco", titulo: "O arco de transformação da Marina" },
+      { id: "6.2", tipo: "rifo", titulo: "O mapa R.I.F.O.", trilhaHref: "/trilha/rifo" },
       {
         id: "6.3",
         tipo: "compromisso",
         titulo: "Aplicação imediata",
         notaApresentador: "Peça o compromisso no chat. Leia 3 em voz alta.",
       },
-      { id: "6.4", tipo: "encerramento", escuro: true, marcaHora: "17:00" },
+      { id: "6.4", tipo: "encerramento", marcaHora: "17:00" },
     ],
   },
   {
