@@ -19,8 +19,6 @@ export const MODULOS_ESSENCIAIS: ModuloTrilha[] = [
   { id: "neuromitos", rotulo: "Mito ou ciência?", desc: "8 afirmações populares sobre o cérebro. Quais se sustentam?", href: "/trilha/neuromitos" },
 ];
 
-// O quiz final roda ao vivo no Kahoot da EDC durante a SIPAT — não pode estar
-// disponível na trilha antes disso, ou as respostas vazam. Ver conteudo/quiz.ts.
 export const MODULOS_EXTRAS: ModuloTrilha[] = [
   { id: "referencias", rotulo: "Referências científicas", desc: "Todos os estudos citados, com link para o artigo.", href: "/trilha/referencias" },
   { id: "palestrante", rotulo: "Sobre a palestrante", desc: "Priscila Ramos — bio e contatos.", href: "/palestrante" },

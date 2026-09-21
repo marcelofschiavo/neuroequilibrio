@@ -13,7 +13,7 @@ const ATALHOS: [string, string][] = [
   ["→ ↓ PageDown Enter Espaço", "avançar"],
   ["← ↑ PageUp Backspace", "voltar"],
   ["Home / End", "início / fim"],
-  ["1 a 8", "pular para o bloco"],
+  ["1 a 7", "pular para o bloco"],
   ["B ou .", "tela preta"],
   ["F", "tela cheia"],
   ["L", "alternar fundo claro / escuro"],
@@ -126,7 +126,7 @@ export function MotorPalco() {
         }
         return;
       }
-      // 1–8 pula direto pro começo do bloco — pra quando o tempo apertar.
+      // 1–7 pula direto pro começo do bloco — pra quando o tempo apertar.
       if (/^[1-9]$/.test(e.key)) {
         const alvo = SEQUENCIA.findIndex((s) => s.bloco.numero === Number(e.key));
         if (alvo !== -1) irPara(alvo, alvo >= indice ? 1 : -1);

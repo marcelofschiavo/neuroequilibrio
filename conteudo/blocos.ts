@@ -9,7 +9,7 @@
  * método prático. Modelo: apresentação enviada pela Priscila Ramos.
  *
  * Convite: 60 min. 5 min de chegada (app/palco/aguardando) + 40 min de
- * palestra (blocos 1–6) + 15 min de dinâmica (blocos 7–8).
+ * palestra (blocos 1–6) + 15 min de perguntas e respostas (bloco 7).
  */
 
 import type { ATOS, CENAS, HoraDoDia } from "./marina";
@@ -194,35 +194,20 @@ export const BLOCOS: Bloco[] = [
     ],
   },
   {
-    id: "kahoot",
-    numero: 7,
-    titulo: "Dinâmica",
-    duracaoMin: 9,
-    slides: [
-      {
-        id: "7.1",
-        tipo: "titulo",
-        titulo: "Agora é sua vez.",
-        destaque: "Abra o Kahoot: 4 perguntas, uma para cada ato do dia da Marina.",
-        notaApresentador: "A dinâmica roda no Kahoot da EDC, não neste deck. Cole o link do Kahoot no chat do Meet e compartilhe a outra aba.",
-      },
-    ],
-  },
-  {
     id: "perguntas",
-    numero: 8,
+    numero: 7,
     titulo: "Perguntas",
     duracaoMin: 6,
     slides: [
       {
-        id: "8.1",
+        id: "7.1",
         tipo: "titulo",
         titulo: "Pergunte à Priscila.",
         notaApresentador: "Perguntas abertas. O cérebro da Marina no próximo slide é clicável — use se perguntarem 'onde isso acontece?'.",
       },
-      { id: "8.2", tipo: "cerebro", titulo: "O cérebro da Marina" },
+      { id: "7.2", tipo: "cerebro", titulo: "O cérebro da Marina" },
       {
-        id: "8.3",
+        id: "7.3",
         tipo: "fecho",
         titulo: "Obrigada.",
         destaque: "O link vai no chat. A trilha continua com as ferramentas, o mapa R.I.F.O. e as fontes científicas.",
