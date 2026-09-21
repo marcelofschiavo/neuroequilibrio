@@ -38,7 +38,7 @@ export function RespiracaoColetiva({
   const cicloAtual = Math.min(Math.floor(segundos / CICLO) + 1, ciclos);
 
   return (
-    <div className="grid w-full grid-cols-[1fr_auto] items-center gap-12">
+    <div className="grid min-h-0 w-full flex-1 grid-cols-[1fr_auto] items-center gap-12">
       <div className="flex min-w-0 flex-col gap-6">
         {titulo && <h2 className="titulo text-palco-titulo text-acento">{titulo}</h2>}
         <p className="text-palco-titulo font-black leading-none text-ink">{terminou ? "Pronto." : fase.rotulo}</p>

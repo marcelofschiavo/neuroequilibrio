@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
-import { AlertTriangle } from "lucide-react";
+import { AlertTriangle, ArrowRight } from "lucide-react";
 import { degrau, escada } from "@/lib/motion";
 import { ALTERNANCIA, ATOS, CENAS, CLIENTE_FALA } from "@/conteudo/marina";
 import { Cerebro } from "../Cerebro";
@@ -12,13 +12,13 @@ import type { Slide } from "@/conteudo/blocos";
 
 /* ------------------------------------------------------------------ cena */
 
-/** A cena em quadrinho: imagem grande à direita, hora e fala à esquerda. */
+/** A cena em quadrinho: hora e fala à esquerda (em ordem de leitura), imagem grande à direita. */
 export function CenaMarina({ slide }: { slide: Slide }) {
   const { reduzido } = usePalco();
   const c = CENAS[slide.cena!];
   return (
-    <div className="grid w-full grid-cols-[1fr_auto] items-center gap-[4vmin]">
-      <motion.div initial="entra" animate="ativo" variants={escada(0.14, 0.1)} className="flex min-w-0 flex-col gap-[2.2vmin]">
+    <div className="grid min-h-0 w-full flex-1 grid-cols-[1fr_auto] items-stretch gap-[4vmin]">
+      <motion.div initial="entra" animate="ativo" variants={escada(0.35, 0.1)} className="flex min-w-0 flex-col justify-center gap-[3.4vmin]">
         <motion.p variants={degrau} className="dados text-palco-mega font-black leading-none text-acento">
           {c.hora}
         </motion.p>
@@ -34,8 +34,8 @@ export function CenaMarina({ slide }: { slide: Slide }) {
         initial={{ opacity: 0, scale: 0.94, rotate: -1.5 }}
         animate={{ opacity: 1, scale: 1, rotate: 0 }}
         transition={{ duration: 0.7, delay: 0.15 }}
-        className="relative aspect-square overflow-hidden rounded-3xl border-[5px] border-ink shadow-xl"
-        style={{ height: "min(66vh, 42vw)" }}
+        className="relative h-full max-h-full max-w-[46vw] self-center overflow-hidden rounded-3xl border-[5px] border-ink shadow-xl"
+        style={{ aspectRatio: "1 / 1" }}
       >
         <motion.div
           className="absolute inset-0"
@@ -51,29 +51,61 @@ export function CenaMarina({ slide }: { slide: Slide }) {
 
 /* ---------------------------------------------------------------- layout */
 
-/** Um ato: título e visual à esquerda (com o texto de apoio), cérebro da Marina à direita. */
+/**
+ * Um ato. O olhar percorre: título → visual (à esquerda) → seta → cérebro da
+ * Marina (à direita) → texto de apoio. A seta e o atraso do cérebro marcam
+ * essa ordem; a fonte fica no pé, discreta.
+ */
 export function AtoLayout({ slide }: { slide: Slide }) {
+  const { reduzido } = usePalco();
   const ato = ATOS[slide.ato!];
   return (
-    <div className="flex w-full flex-col gap-[1.2vmin]">
-      <div className="grid w-full grid-cols-[1.12fr_1fr] items-center gap-[3vmin]">
-        <div className="flex min-w-0 flex-col gap-[1.6vmin]">
-          <motion.h2 initial="entra" animate="ativo" variants={degrau} className="titulo text-[clamp(26px,2.2vw,42px)] text-ink">
+    <div className="flex min-h-0 w-full flex-1 flex-col gap-[1.4vmin]">
+      <div className="grid min-h-0 flex-1 grid-cols-[1.12fr_auto_1fr] items-stretch gap-[2vmin]">
+        <div className="flex min-h-0 min-w-0 flex-col gap-[2vmin]">
+          <motion.h2
+            initial="entra"
+            animate="ativo"
+            variants={degrau}
+            className="titulo shrink-0 text-[length:calc(clamp(26px,2.2vw,42px)*var(--escala-texto,1))] text-ink"
+          >
             {ato.titulo}
           </motion.h2>
-          <div className="min-h-0">
-            {slide.visual === "curva" ? <VisualCurva /> : slide.visual === "mochila" ? <VisualMochila /> : slide.visual === "ecg" ? <VisualEcg /> : <VisualAlternancia />}
+          <div className="flex min-h-0 flex-1 items-center">
+            <div className="h-full min-h-0 w-full">
+              {slide.visual === "curva" ? <VisualCurva /> : slide.visual === "mochila" ? <VisualMochila /> : slide.visual === "ecg" ? <VisualEcg /> : <VisualAlternancia />}
+            </div>
           </div>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1 }}
-            className="rounded-2xl border-[3px] border-acento bg-acento-wash px-[2vmin] py-[1vmin] text-palco-nota font-semibold leading-[1.28] text-ink"
+            transition={{ delay: 2.4 }}
+            className="shrink-0 rounded-2xl border-[3px] border-acento bg-acento-wash px-[2vmin] py-[1.2vmin] text-palco-nota font-semibold leading-[1.3] text-ink"
           >
             {ato.callout}
           </motion.p>
         </div>
-        <Cerebro ativas={ato.regioes} />
+
+        <motion.span
+          role="img"
+          aria-label="no cérebro"
+          className="self-center text-acento"
+          initial={{ opacity: 0 }}
+          animate={reduzido ? { opacity: 1 } : { opacity: 1, x: [0, 10, 0] }}
+          transition={reduzido ? { duration: 0 } : { delay: 1.4, duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <ArrowRight aria-hidden className="h-[6vmin] w-[6vmin]" strokeWidth={3} />
+        </motion.span>
+
+        <motion.div
+          initial={{ opacity: 0, x: 24 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 1.4, duration: 0.6 }}
+          className="flex min-h-0 flex-col items-center justify-center gap-[1vmin]"
+        >
+          <p className="dados self-start text-palco-rodape font-bold uppercase tracking-wide text-muted">No cérebro da Marina</p>
+          <Cerebro ativas={ato.regioes} legenda={false} />
+        </motion.div>
       </div>
       <Fonte ids={ato.fontes} evidencia={ato.evidencia} ilustrativo={ato.ilustrativo} />
     </div>
@@ -104,12 +136,12 @@ function VisualCurva() {
     { cor: "bg-alerta", txt: "Fadiga: foco irregular" },
   ];
   return (
-    <div className="flex flex-col gap-[1vmin]">
-      <div className="flex items-stretch gap-2">
+    <div className="flex h-full min-h-0 flex-col gap-[1vmin]">
+      <div className="flex min-h-0 flex-1 items-stretch gap-2">
         <span className="dados text-palco-rodape font-bold text-ink-2 [text-orientation:mixed] [writing-mode:vertical-rl] rotate-180">
           Capacidade de foco →
         </span>
-        <svg viewBox="0 0 900 250" className="h-auto max-h-[26vh] w-full" role="img" aria-label="Gráfico ilustrativo: o foco oscila em ondas naturais e, depois de horas sem pausa, cai e fica irregular, abaixo da expectativa de quatro horas sem levantar.">
+        <svg viewBox="0 0 900 250" className="h-full min-h-0 w-full flex-1" role="img" aria-label="Gráfico ilustrativo: o foco oscila em ondas naturais e, depois de horas sem pausa, cai e fica irregular, abaixo da expectativa de quatro horas sem levantar.">
           <line x1="10" y1="10" x2="10" y2="240" stroke="var(--ink-2)" strokeWidth="4" />
           <line x1="10" y1="240" x2="890" y2="240" stroke="var(--ink-2)" strokeWidth="4" />
           <line x1="10" y1="30" x2="890" y2="30" stroke="var(--ink-2)" strokeWidth="4" strokeDasharray="14 10" />
@@ -161,10 +193,10 @@ const PEDRINHAS = [
 function VisualMochila() {
   const { reduzido } = usePalco();
   return (
-    <div className="grid grid-cols-[auto_1fr] items-center gap-[2vmin]">
+    <div className="grid h-full min-h-0 grid-cols-[auto_1fr] items-center gap-[2vmin]">
       <motion.svg
         viewBox="0 0 300 340"
-        className="h-[27vh] w-auto"
+        className="h-full max-h-full w-auto"
         role="img"
         aria-label="Uma mochila transparente cheia de pedrinhas, com uma pedra grande e vermelha em cima: o turno descoberto."
         animate={reduzido ? undefined : { scaleY: [1, 1, 0.965] }}
@@ -224,9 +256,9 @@ function VisualMochila() {
 function VisualEcg() {
   const { reduzido } = usePalco();
   return (
-    <div className="flex flex-col gap-[1.2vmin]">
-      <div className="overflow-hidden rounded-2xl border-[4px] border-ink bg-[#0A1F1A] px-2 py-1">
-        <svg viewBox="0 0 600 150" className="h-auto w-full" role="img" aria-label="Eletrocardiograma ilustrativo: batimentos calmos que, de repente, disparam em picos altos e irregulares.">
+    <div className="flex h-full min-h-0 flex-col gap-[1.4vmin]">
+      <div className="min-h-0 flex-1 overflow-hidden rounded-2xl border-[4px] border-ink bg-[#0A1F1A] px-2 py-1">
+        <svg viewBox="0 0 600 150" className="h-full w-full" role="img" aria-label="Eletrocardiograma ilustrativo: batimentos calmos que, de repente, disparam em picos altos e irregulares.">
           <g stroke="#1E4A3C" strokeWidth="1.5">
             {Array.from({ length: 12 }).map((_, i) => (
               <line key={`v${i}`} x1={i * 50} y1="0" x2={i * 50} y2="150" />
@@ -248,7 +280,7 @@ function VisualEcg() {
           />
         </svg>
       </div>
-      <blockquote className="rounded-2xl border-[4px] border-alerta bg-alerta-wash px-[2vmin] py-[1.2vmin]">
+      <blockquote className="shrink-0 rounded-2xl border-[4px] border-alerta bg-alerta-wash px-[2vmin] py-[1.2vmin]">
         <span className="dados block text-palco-rodape font-bold uppercase text-alerta">Fala do cliente</span>
         <p className="titulo text-palco-texto leading-tight text-ink">{CLIENTE_FALA}</p>
       </blockquote>
@@ -271,7 +303,7 @@ function Linha({ itens, destaque = false, atraso = 0 }: { itens: string[]; desta
         <motion.li
           key={`${t}${i}`}
           variants={degrau}
-          className={`titulo relative text-[clamp(44px,5.4vw,92px)] leading-none ${destaque && i % 2 === 1 ? "opacity-90" : ""}`}
+          className={`titulo relative text-[length:calc(clamp(44px,5.4vw,92px)*var(--escala-texto,1))] leading-none ${destaque && i % 2 === 1 ? "opacity-90" : ""}`}
           aria-hidden
         >
           {t}
@@ -284,7 +316,7 @@ function Linha({ itens, destaque = false, atraso = 0 }: { itens: string[]; desta
 
 function VisualAlternancia() {
   return (
-    <div className="flex flex-col gap-[1vmin]">
+    <div className="flex h-full min-h-0 flex-col justify-around gap-[1vmin]">
       <Linha itens={ALTERNANCIA.letras} />
       <Linha itens={ALTERNANCIA.numeros} atraso={0.9} />
       <Linha itens={ALTERNANCIA.misto} destaque atraso={2} />

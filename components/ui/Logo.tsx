@@ -39,6 +39,25 @@ export function LogoPalco({ tamanho = 40 }: { tamanho?: number }) {
 }
 
 /**
+ * Marca da Mindheart para o palco: troca sozinha entre a versão com o nome
+ * em cinza-escuro (fundo claro) e a com o nome claro (fundo escuro), pelo
+ * mesmo mecanismo do LogoPalco (atributo `data-claro` no <html>).
+ */
+export function MindheartPalco({ altura = 28 }: { altura?: number }) {
+  const largura = Math.round((altura * 727) / 550);
+  return (
+    <span className="relative inline-block" style={{ height: altura, width: largura }}>
+      <span className="logo-escura absolute inset-0">
+        <Image src="/logo/mindheart-claro.png" alt="Mindheart" width={largura} height={altura} style={{ height: altura, width: "auto" }} />
+      </span>
+      <span className="logo-clara absolute inset-0">
+        <Image src="/logo/mindheart.png" alt="Mindheart" width={largura} height={altura} style={{ height: altura, width: "auto" }} />
+      </span>
+    </span>
+  );
+}
+
+/**
  * EDC + Mindheart lado a lado, sobre um painel branco — o logo da Mindheart
  * tem texto cinza-escuro e não lê bem direto sobre o fundo escuro do palco.
  */

@@ -48,7 +48,7 @@ function Corpo({ slide }: { slide: TipoSlide }) {
       return <Encerramento />;
     case "cerebro":
       return (
-        <div className="flex w-full flex-col gap-[1.6vmin]">
+        <div className="flex min-h-0 w-full flex-1 flex-col gap-[1.6vmin]">
           {slide.titulo && (
             <motion.h2 initial="entra" animate="ativo" variants={degrau} className="titulo text-palco-corpo text-acento">
               {slide.titulo}
@@ -62,7 +62,7 @@ function Corpo({ slide }: { slide: TipoSlide }) {
     case "titulo":
     default:
       return (
-        <div className="flex w-full flex-col gap-[3vmin]">
+        <div className="flex min-h-0 w-full flex-1 flex-col justify-center gap-[3vmin]">
           <motion.h2 initial="entra" animate="ativo" variants={degrau} className="titulo text-palco-mega text-acento">
             {slide.titulo}
           </motion.h2>
@@ -81,13 +81,18 @@ function Corpo({ slide }: { slide: TipoSlide }) {
   }
 }
 
+/**
+ * Todo slide ocupa a altura inteira da área de conteúdo: o título fica no alto,
+ * os blocos se esticam e a fonte desce para o pé. Nada de conteúdo "boiando"
+ * no meio com faixas vazias em cima e embaixo.
+ */
 export function Slide({ slide }: { slide: TipoSlide }) {
-  const corpo = <Corpo slide={slide} />;
-  if (!slide.marcaHora) return corpo;
   return (
-    <div className="flex w-full items-stretch gap-[2.4vmin]">
-      <LinhaDoDia hora={slide.marcaHora} />
-      <div className="min-w-0 flex-1">{corpo}</div>
+    <div className="flex min-h-0 w-full flex-1 gap-[2.4vmin]">
+      {slide.marcaHora && <LinhaDoDia hora={slide.marcaHora} />}
+      <div className="flex min-h-0 min-w-0 flex-1 flex-col">
+        <Corpo slide={slide} />
+      </div>
     </div>
   );
 }

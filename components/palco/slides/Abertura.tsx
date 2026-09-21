@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
-import { AlertTriangle, BatteryLow, Bell, Brain, Mail, MessageCircle, MessageSquare, Phone, Clock } from "lucide-react";
+import { AlertTriangle, ArrowRight, BatteryLow, Bell, Brain, Mail, MessageCircle, MessageSquare, Phone, Clock } from "lucide-react";
 import { degrau, escada } from "@/lib/motion";
 import { ENGOLIDO, MODELO_OPERACIONAL, NOTIFICACOES } from "@/conteudo/marina";
 import { PALESTRANTE } from "@/conteudo/palestrante";
@@ -15,7 +15,7 @@ import type { Slide } from "@/conteudo/blocos";
 
 export function Capa({ slide }: { slide: Slide }) {
   return (
-    <div className="grid w-full grid-cols-[1.25fr_1fr] items-center gap-[3vmin]">
+    <div className="grid min-h-0 w-full flex-1 grid-cols-[1.25fr_1fr] items-center gap-[3vmin]">
       <div className="flex min-w-0 flex-col items-start gap-[5vmin]">
         <motion.h2 initial="entra" animate="ativo" variants={degrau} className="titulo max-w-[14ch] text-palco-mega text-acento">
           {slide.titulo}
@@ -43,7 +43,7 @@ const FLUTUANTES = [
 export function Relogio({ slide }: { slide: Slide }) {
   const { reduzido } = usePalco();
   return (
-    <div className="relative flex w-full flex-col items-center gap-[4vmin] text-center">
+    <div className="relative flex min-h-0 w-full flex-1 flex-col items-center justify-center gap-[5vmin] text-center">
       {FLUTUANTES.map(({ Icone, x, y, rotulo }, i) => (
         <motion.span
           key={rotulo}
@@ -88,23 +88,42 @@ const ICONE_NOTIF = { alerta: AlertTriangle, mensagem: MessageCircle, tempo: Clo
 export function Engolido() {
   const { reduzido } = usePalco();
   return (
-    <div className="flex w-full flex-col gap-[1.8vmin]">
-      <motion.h2 initial="entra" animate="ativo" variants={degrau} className="titulo text-[clamp(40px,4.6vw,84px)] text-ink">
+    <div className="flex min-h-0 w-full flex-1 flex-col gap-[2.4vmin]">
+      <motion.h2
+        initial="entra"
+        animate="ativo"
+        variants={degrau}
+        className="titulo shrink-0 text-[length:calc(clamp(36px,3.8vw,72px)*var(--escala-texto,1))] text-ink"
+      >
         {ENGOLIDO.titulo}
       </motion.h2>
 
-      <div className="grid grid-cols-[0.8fr_1.4fr] gap-[3vmin]">
-        <div className="flex flex-col gap-[1.6vmin]">
+      <div className="grid min-h-0 flex-1 grid-cols-[1fr_auto_1.7fr] items-stretch gap-[2vmin]">
+        <div className="flex min-h-0 flex-col gap-[1.6vmin]">
           <span className="dados text-palco-corpo font-black text-acento">08:00</span>
-          <div className="rounded-2xl border-[3px] border-acento bg-surface p-[2vmin] text-palco-texto font-semibold leading-snug">
-            <span aria-hidden className="mr-3 inline-block h-[0.8em] w-[0.8em] translate-y-[0.1em] rounded border-[3px] border-acento" />
-            {ENGOLIDO.tarefa}
+          <div className="flex flex-1 items-center rounded-2xl border-[3px] border-acento bg-surface p-[2.4vmin] text-palco-corpo font-semibold leading-snug">
+            <span>
+              <span aria-hidden className="mr-3 inline-block h-[0.8em] w-[0.8em] translate-y-[0.1em] rounded border-[3px] border-acento" />
+              {ENGOLIDO.tarefa}
+            </span>
           </div>
         </div>
 
-        <div className="flex flex-col gap-[1.6vmin]">
+        {/* o olhar vai do plano limpo para o plano engolido */}
+        <motion.span
+          aria-label="e então"
+          role="img"
+          className="self-center text-alerta"
+          initial={{ opacity: 0, x: -10 }}
+          animate={reduzido ? { opacity: 1, x: 0 } : { opacity: 1, x: [0, 12, 0] }}
+          transition={reduzido ? { duration: 0 } : { delay: 0.6, duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <ArrowRight aria-hidden className="h-[8vmin] w-[8vmin]" strokeWidth={3} />
+        </motion.span>
+
+        <div className="flex min-h-0 flex-col gap-[1.6vmin]">
           <span className="dados text-palco-corpo font-black text-alerta">08:15</span>
-          <div className="relative rounded-2xl border-[3px] border-alerta bg-alerta-wash p-[2vmin]">
+          <div className="flex flex-1 flex-col justify-center gap-[2.4vmin] rounded-2xl border-[3px] border-alerta bg-alerta-wash p-[2.4vmin]">
             <p className="text-palco-texto font-semibold leading-snug text-ink opacity-70">
               <span aria-hidden className="mr-3 inline-block h-[0.8em] w-[0.8em] translate-y-[0.1em] rounded border-[3px] border-ink-2" />
               {ENGOLIDO.tarefa}
@@ -112,8 +131,8 @@ export function Engolido() {
             <motion.ul
               initial="entra"
               animate="ativo"
-              variants={escada(reduzido ? 0 : 0.28, 0.5)}
-              className="mt-[1.6vmin] flex flex-wrap gap-[1.2vmin]"
+              variants={escada(reduzido ? 0 : 0.32, 0.9)}
+              className="flex flex-wrap gap-[1.6vmin]"
               aria-label="Notificações que chegaram"
             >
               {NOTIFICACOES.map((n) => {
@@ -122,7 +141,7 @@ export function Engolido() {
                   <motion.li
                     key={n.texto}
                     variants={degrau}
-                    className="flex items-center gap-2 rounded-xl border-[3px] border-alerta bg-surface px-3 py-1.5 text-palco-nota font-bold text-ink"
+                    className="flex items-center gap-2 rounded-xl border-[3px] border-alerta bg-surface px-4 py-2 text-palco-nota font-bold text-ink"
                   >
                     <Icone aria-hidden className="h-[1.1em] w-[1.1em] shrink-0 text-alerta" strokeWidth={2.6} />
                     {n.texto}
@@ -137,8 +156,8 @@ export function Engolido() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: reduzido ? 0 : 3.2 }}
-        className="flex items-start gap-4 rounded-2xl bg-ink px-[2.4vmin] py-[1.4vmin] text-bg"
+        transition={{ delay: reduzido ? 0 : 4 }}
+        className="flex shrink-0 items-start gap-4 rounded-2xl bg-ink px-[2.4vmin] py-[1.6vmin] text-bg"
       >
         <MessageSquare aria-hidden className="mt-1 h-[1.5em] w-[1.5em] shrink-0 text-palco-nota" />
         <p className="text-palco-nota font-semibold leading-snug">{ENGOLIDO.chat}</p>
@@ -152,16 +171,16 @@ export function Engolido() {
 export function Modelo() {
   const { reduzido } = usePalco();
   return (
-    <div className="flex w-full flex-col gap-[3vmin]">
-      <motion.h2 initial="entra" animate="ativo" variants={degrau} className="titulo max-w-[40ch] text-palco-corpo text-ink">
+    <div className="flex min-h-0 w-full flex-1 flex-col gap-[2.4vmin]">
+      <motion.h2 initial="entra" animate="ativo" variants={degrau} className="titulo max-w-[36ch] shrink-0 text-palco-corpo text-ink">
         {MODELO_OPERACIONAL.titulo}
       </motion.h2>
-      <div className="grid grid-cols-2 gap-[3vmin]">
+      <div className="grid min-h-0 flex-1 grid-cols-[1fr_auto_1fr] items-stretch gap-[2vmin]">
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.3 }}
-          className="flex flex-col items-center gap-[2vmin] rounded-3xl border-[3px] border-alerta bg-alerta-wash p-[2.4vmin] text-center"
+          className="flex flex-col items-center justify-center gap-[3vmin] rounded-3xl border-[3px] border-alerta bg-alerta-wash p-[2.4vmin] text-center"
         >
           <motion.span
             aria-hidden
@@ -169,17 +188,28 @@ export function Modelo() {
             transition={{ duration: 1.4, repeat: Infinity, repeatDelay: 1.6 }}
             className="text-alerta"
           >
-            <BatteryLow className="h-[16vmin] w-[16vmin]" strokeWidth={1.8} />
+            <BatteryLow className="h-[22vmin] w-[22vmin]" strokeWidth={1.6} />
           </motion.span>
           <p className="titulo text-palco-corpo text-alerta">{MODELO_OPERACIONAL.bruta.titulo}</p>
           <p className="text-palco-texto leading-snug text-ink">{MODELO_OPERACIONAL.bruta.texto}</p>
         </motion.div>
 
+        <motion.span
+          role="img"
+          aria-label="vira"
+          className="self-center text-ink-2"
+          initial={{ opacity: 0 }}
+          animate={reduzido ? { opacity: 1 } : { opacity: 1, x: [0, 10, 0] }}
+          transition={reduzido ? { duration: 0 } : { delay: 0.9, duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <ArrowRight aria-hidden className="h-[8vmin] w-[8vmin]" strokeWidth={3} />
+        </motion.span>
+
         <motion.div
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.6 }}
-          className="flex flex-col items-center gap-[2vmin] rounded-3xl border-[3px] border-acento bg-acento-wash p-[2.4vmin] text-center"
+          transition={{ delay: 0.9 }}
+          className="flex flex-col items-center justify-center gap-[3vmin] rounded-3xl border-[3px] border-acento bg-acento-wash p-[2.4vmin] text-center"
         >
           <motion.span
             aria-hidden
@@ -187,7 +217,7 @@ export function Modelo() {
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
             className="text-acento"
           >
-            <Brain className="h-[16vmin] w-[16vmin]" strokeWidth={1.8} />
+            <Brain className="h-[22vmin] w-[22vmin]" strokeWidth={1.6} />
           </motion.span>
           <p className="titulo text-palco-corpo text-acento">{MODELO_OPERACIONAL.biologica.titulo}</p>
           <p className="text-palco-texto leading-snug text-ink">{MODELO_OPERACIONAL.biologica.texto}</p>
@@ -201,12 +231,12 @@ export function Modelo() {
 
 export function Palestrante({ slide }: { slide: Slide }) {
   return (
-    <div className="grid w-full grid-cols-[auto_1fr] items-center gap-[4vmin]">
+    <div className="grid min-h-0 w-full flex-1 grid-cols-[auto_1fr] items-center gap-[4vmin]">
       <motion.div
         initial={{ opacity: 0, scale: 0.94 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6 }}
-        className="relative h-[62vh] overflow-hidden rounded-3xl border-[4px] border-acento"
+        className="relative h-full max-h-[80vh] overflow-hidden rounded-3xl border-[4px] border-acento"
         style={{ aspectRatio: "2 / 3" }}
       >
         <Image src={PALESTRANTE.foto} alt={`Foto de ${PALESTRANTE.nome}`} fill className="object-cover" sizes="42vh" priority />

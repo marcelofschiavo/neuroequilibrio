@@ -74,6 +74,30 @@
   color-scheme: light;
 }
 
+
+/* ---------- CORES DE DESTAQUE (configurações do palco) ----------
+   O verde da EDC é o padrão (sem atributo). As demais foram medidas: acento
+   >= 4,8:1 sobre os fundos e texto sobre o acento >= 5,9:1. O contraste
+   máximo ignora a paleta (o JS não põe o atributo quando ele está ligado). */
+[data-tema="palco"][data-paleta="azul"] {
+  --acento:#6DB3F2; --acento-2:#6DB3F2; --acento-wash:#10344A; --focus:#6DB3F2; --sobre-acento:#05233F;
+}
+[data-tema="palco"][data-paleta="laranja"] {
+  --acento:#FFA84D; --acento-2:#FFA84D; --acento-wash:#3A2A14; --focus:#FFA84D; --sobre-acento:#2B1600;
+}
+[data-tema="palco"][data-paleta="roxo"] {
+  --acento:#C3A0F3; --acento-2:#C3A0F3; --acento-wash:#2C2145; --focus:#C3A0F3; --sobre-acento:#1D0F36;
+}
+[data-tema="palco"][data-claro="on"][data-paleta="azul"] {
+  --acento:#1F5FA6; --acento-2:#174A85; --acento-wash:#E1ECF8; --focus:#1F5FA6; --sobre-acento:#FFFFFF;
+}
+[data-tema="palco"][data-claro="on"][data-paleta="laranja"] {
+  --acento:#A34A00; --acento-2:#7F3900; --acento-wash:#FBE9D6; --focus:#A34A00; --sobre-acento:#FFFFFF;
+}
+[data-tema="palco"][data-claro="on"][data-paleta="roxo"] {
+  --acento:#6A3E9E; --acento-2:#532F80; --acento-wash:#EDE3F7; --focus:#6A3E9E; --sobre-acento:#FFFFFF;
+}
+
 /* ---------- CONTRASTE MÁXIMO (tecla C) — sempre por cima, claro ou escuro ---------- */
 [data-tema="palco"][data-contraste="max"] {
   --bg:        #000000;
@@ -119,12 +143,12 @@
   --font-titulo: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
   --font-dados:  var(--font-plex-mono), ui-monospace, monospace;
 
-  --text-palco-mega:   clamp(64px, 9vw, 140px);
-  --text-palco-titulo: clamp(48px, 6.4vw, 96px);
-  --text-palco-corpo:  clamp(34px, 2.9vw, 60px);
-  --text-palco-nota:   clamp(26px, 1.9vw, 38px);
-  --text-palco-texto:  clamp(28px, 2.3vw, 46px);
-  --text-palco-rodape: clamp(18px, 1.25vw, 24px);
+  --text-palco-mega:   calc(clamp(64px, 9vw, 140px) * var(--escala-texto, 1));
+  --text-palco-titulo: calc(clamp(48px, 6.4vw, 96px) * var(--escala-texto, 1));
+  --text-palco-corpo:  calc(clamp(34px, 2.9vw, 60px) * var(--escala-texto, 1));
+  --text-palco-nota:   calc(clamp(26px, 1.9vw, 38px) * var(--escala-texto, 1));
+  --text-palco-texto:  calc(clamp(28px, 2.3vw, 46px) * var(--escala-texto, 1));
+  --text-palco-rodape: calc(clamp(18px, 1.25vw, 24px) * var(--escala-texto, 1));
 }
 
 * { box-sizing: border-box; }

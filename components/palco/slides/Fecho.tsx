@@ -15,7 +15,7 @@ export function Fecho({ slide }: { slide: Slide }) {
   const rotuloUrl = url.replace(/^https?:\/\//, "");
 
   return (
-    <div className="grid w-full grid-cols-[1fr_auto] items-center gap-14">
+    <div className="grid min-h-0 w-full flex-1 grid-cols-[1fr_auto] items-center gap-14">
       <div className="flex min-w-0 flex-col gap-7">
         <motion.h2 initial="entra" animate="ativo" variants={degrau} className="titulo text-palco-titulo text-acento">
           {slide.titulo}

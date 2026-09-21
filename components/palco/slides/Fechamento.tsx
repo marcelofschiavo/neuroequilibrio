@@ -12,23 +12,23 @@ import type { Slide } from "@/conteudo/blocos";
 
 export function Arco() {
   return (
-    <div className="flex w-full flex-col gap-[2.4vmin]">
+    <div className="flex min-h-0 w-full flex-1 flex-col gap-[2vmin]">
       <motion.h2 initial="entra" animate="ativo" variants={degrau} className="titulo text-palco-corpo text-ink">
         {ARCO.titulo}
       </motion.h2>
-      <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-x-[2vmin] gap-y-[1.1vmin]">
+      <div className="grid min-h-0 flex-1 grid-cols-[1fr_auto_1fr] grid-rows-[auto_repeat(4,minmax(0,1fr))] items-stretch gap-x-[2vmin] gap-y-[1.4vmin]">
         <span className="dados text-palco-nota font-black uppercase tracking-wide text-alerta">{ARCO.de}</span>
         <span aria-hidden />
         <span className="dados text-palco-nota font-black uppercase tracking-wide text-acento">{ARCO.para}</span>
         {ARCO.linhas.map((l, i) => (
           <motion.div key={l.de} className="contents" initial="entra" animate="ativo" variants={escada(0, 0.3 + i * 0.55)}>
-            <motion.p variants={degrau} className="rounded-2xl border-[3px] border-alerta bg-alerta-wash px-[2vmin] py-[1vmin] text-palco-texto font-semibold leading-snug text-ink">
+            <motion.p variants={degrau} className="flex items-center rounded-2xl border-[3px] border-alerta bg-alerta-wash px-[2vmin] py-[1vmin] text-palco-texto font-semibold leading-snug text-ink">
               {l.de}
             </motion.p>
-            <motion.span variants={degrau}>
+            <motion.span variants={degrau} className="flex items-center">
               <ArrowRight aria-label="vira" className="h-[5vmin] w-[5vmin] text-ink-2" strokeWidth={3} />
             </motion.span>
-            <motion.p variants={degrau} className="rounded-2xl border-[3px] border-acento bg-acento-wash px-[2vmin] py-[1vmin] text-palco-texto font-semibold leading-snug text-ink">
+            <motion.p variants={degrau} className="flex items-center rounded-2xl border-[3px] border-acento bg-acento-wash px-[2vmin] py-[1vmin] text-palco-texto font-semibold leading-snug text-ink">
               {l.para}
             </motion.p>
           </motion.div>
@@ -43,12 +43,12 @@ export function Arco() {
 export function Rifo({ slide }: { slide: Slide }) {
   const { reduzido } = usePalco();
   return (
-    <div className="flex w-full flex-col gap-[2vmin]">
+    <div className="flex min-h-0 w-full flex-1 flex-col gap-[2vmin]">
       <motion.h2 initial="entra" animate="ativo" variants={degrau} className="titulo text-palco-corpo text-ink">
         {RIFO.titulo}
       </motion.h2>
 
-      <div className="relative grid grid-cols-2 gap-[2vmin]">
+      <div className="relative grid min-h-0 flex-1 grid-cols-2 grid-rows-2 gap-[2vmin]">
         {RIFO.quadrantes.map((q, i) => (
           <motion.div
             key={q.letra}
@@ -59,7 +59,7 @@ export function Rifo({ slide }: { slide: Slide }) {
           >
             <span
               aria-hidden
-              className="titulo flex h-[13vmin] w-[13vmin] shrink-0 items-center justify-center rounded-full bg-acento text-[clamp(48px,6vw,104px)] leading-none text-sobre-acento"
+              className="titulo flex h-[13vmin] w-[13vmin] shrink-0 items-center justify-center rounded-full bg-acento text-[length:calc(clamp(48px,6vw,104px)*var(--escala-texto,1))] leading-none text-sobre-acento"
             >
               {q.letra}
             </span>
@@ -94,7 +94,7 @@ const ICONES_COMP = [Timer, ListChecks, Wind, LayoutList];
 
 export function Compromisso() {
   return (
-    <div className="flex w-full flex-col gap-[2vmin]">
+    <div className="flex min-h-0 w-full flex-1 flex-col justify-center gap-[3vmin]">
       <p className="dados flex items-center gap-3 text-palco-nota font-bold uppercase tracking-wide text-muted">
         {COMPROMISSO.chamada}
       </p>
@@ -109,14 +109,14 @@ export function Compromisso() {
           &nbsp;
         </motion.span>
       </motion.h2>
-      <motion.ul initial="entra" animate="ativo" variants={escada(0.25, 0.8)} className="grid grid-cols-2 gap-[1.6vmin]">
+      <motion.ul initial="entra" animate="ativo" variants={escada(0.25, 0.8)} className="grid min-h-0 flex-1 grid-cols-2 grid-rows-2 gap-[2vmin]">
         {COMPROMISSO.opcoes.map((o, i) => {
           const Icone = ICONES_COMP[i];
           return (
             <motion.li
               key={o}
               variants={degrau}
-              className="flex items-start gap-[1.6vmin] rounded-2xl border-[3px] border-acento bg-acento-wash p-[1.8vmin] text-palco-nota font-semibold leading-snug text-ink"
+              className="flex items-center gap-[1.6vmin] rounded-2xl border-[3px] border-acento bg-acento-wash p-[1.8vmin] text-palco-texto font-semibold leading-snug text-ink"
             >
               <Icone aria-hidden className="mt-1 h-[1.5em] w-[1.5em] shrink-0 text-acento" strokeWidth={2.4} />
               {o}
@@ -133,7 +133,7 @@ export function Compromisso() {
 export function Encerramento() {
   const { reduzido } = usePalco();
   return (
-    <div className="flex w-full flex-col items-center gap-[3vmin] text-center">
+    <div className="flex min-h-0 w-full flex-1 flex-col items-center justify-center gap-[4vmin] text-center">
       <div aria-hidden className="flex max-w-[64vw] flex-wrap justify-center gap-[1.4vmin] opacity-30">
         {NOTIFICACOES.slice(0, 6).map((n, i) => (
           <motion.span

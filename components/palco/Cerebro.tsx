@@ -63,10 +63,12 @@ type Props = {
   compacto?: boolean;
   /** Mostra o painel "o que faz / onde fica / por que importa" da região escolhida. */
   painel?: boolean;
+  /** Uma linha por região acesa sob o desenho (desligada nos atos: o texto de apoio já diz isso). */
+  legenda?: boolean;
   className?: string;
 };
 
-export function Cerebro({ ativas, interativo = false, compacto = false, painel = false, className = "" }: Props) {
+export function Cerebro({ ativas, interativo = false, compacto = false, painel = false, legenda: mostrarLegenda = true, className = "" }: Props) {
   const { reduzido } = usePalco();
   const id = useId().replace(/:/g, "");
   const [escolhida, setEscolhida] = useState<RegiaoCerebro | null>(null);
@@ -215,7 +217,7 @@ export function Cerebro({ ativas, interativo = false, compacto = false, painel =
   );
 
   // Legenda: uma linha por região acesa (modo roteiro) ou painel completo (modo clique).
-  const legenda = !compacto && !painel && acesas.length > 0 && (
+  const legenda = mostrarLegenda && !compacto && !painel && acesas.length > 0 && (
     <ul className="mt-[1.6vmin] flex flex-col gap-1 text-palco-nota leading-snug text-ink-2">
       {acesas.map((r) => (
         <li key={r}>
@@ -236,10 +238,10 @@ export function Cerebro({ ativas, interativo = false, compacto = false, painel =
 
   const info = primeira ? REGIOES[primeira] : null;
   return (
-    <div className="grid w-full items-center gap-[3vmin] lg:grid-cols-[1.7fr_1fr]">
+    <div className="grid min-h-0 w-full flex-1 items-center gap-[3vmin] lg:grid-cols-[1.7fr_1fr]">
       {figura}
       <div
-        className="min-h-[30vh] rounded-2xl border-[3px] border-line-2 bg-surface p-[2.4vmin]"
+        className="min-h-[30vh] self-stretch rounded-2xl border-[3px] border-line-2 bg-surface p-[2.4vmin]"
         aria-live="polite"
       >
         {info ? (
