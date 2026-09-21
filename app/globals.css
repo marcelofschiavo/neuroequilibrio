@@ -219,3 +219,8 @@ button:not(:disabled) { cursor: pointer; }
     transition-duration: .001ms !important;
   }
 }
+
+/* Quebra de linha equilibrada no palco: evita palavra solta na última linha. */
+.palco-grade :is(h1, h2, h3, p, li) {
+  text-wrap: balance;
+}
