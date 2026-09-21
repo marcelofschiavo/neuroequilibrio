@@ -54,7 +54,7 @@ export function Fecho({ slide }: { slide: Slide }) {
         transition={{ delay: 0.8, duration: 0.6, ease: ENTRADA }}
         className="flex flex-col items-center gap-4"
       >
-        <motion.div initial="ativo" animate="ativo" variants={pulsa} className="rounded-3xl bg-white p-[2.4vmin]">
+        <motion.div initial="ativo" animate="ativo" variants={pulsa} className="rounded-3xl bg-white p-[1.6vmin]">
           <QRCodeSVG
             title="QR code para abrir a trilha"
             value={url}
@@ -62,10 +62,11 @@ export function Fecho({ slide }: { slide: Slide }) {
             level="M"
             bgColor="#FFFFFF"
             fgColor="#1E1F21"
-            style={{ width: "36vmin", height: "36vmin", display: "block" }}
+            style={{ width: "24vmin", height: "24vmin", display: "block" }}
           />
         </motion.div>
-        <p className="dados text-palco-nota font-semibold text-ink [overflow-wrap:anywhere]">{rotuloUrl}</p>
+        <p className="dados text-palco-nota font-bold text-acento [overflow-wrap:anywhere]">{rotuloUrl}</p>
+        <p className="text-palco-rodape font-semibold text-ink-2">o link também vai no chat</p>
       </motion.div>
     </div>
   );
