@@ -33,7 +33,7 @@ Onde mora cada coisa:
   e fonte. Gráficos são marcados como ilustrativos. A "Regra 90-3-1" é
   apresentada como regra prática, não como lei da biologia.
 - **Identidade:** verde-petróleo e verde da EDC, com a marca Mindheart ao lado.
-  Fundo claro por padrão; slides de abertura e fecho de capítulo são escuros.
+  Fundo claro por padrão; a tecla L alterna para escuro (o tema nunca muda sozinho entre slides).
 
 ## Acessibilidade do palco
 

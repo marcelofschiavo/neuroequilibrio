@@ -42,8 +42,6 @@ export type Slide = {
   tipo: TipoSlide;
   titulo?: string;
   destaque?: string;
-  /** Slide sempre em fundo escuro (abre/fecha capítulos), mesmo com o tema claro ligado. */
-  escuro?: boolean;
   /** Mostra a linha do tempo do dia com este horário aceso. */
   marcaHora?: HoraDoDia;
   cena?: keyof typeof CENAS;
@@ -74,7 +72,6 @@ export const BLOCOS: Bloco[] = [
       {
         id: "1.2",
         tipo: "relogio",
-        escuro: true,
         titulo: "O cérebro da Marina",
         notaApresentador: "Apresente a personagem: Marina é fictícia, mas o dia dela é o de muita gente aqui. 30 s.",
       },
@@ -227,7 +224,6 @@ export const BLOCOS: Bloco[] = [
       {
         id: "8.3",
         tipo: "fecho",
-        escuro: true,
         titulo: "Obrigada.",
         destaque: "A trilha continua com as ferramentas, o mapa R.I.F.O. e as fontes científicas.",
       },

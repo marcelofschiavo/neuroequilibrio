@@ -49,8 +49,8 @@ export function MotorPalco() {
 
   const atual = SEQUENCIA[indice];
   const reduzido = animOff || sistemaReduz;
-  // Slides "escuros" (abrem e fecham capítulos) ignoram o fundo claro.
-  const claroEfetivo = claro && !atual.slide.escuro;
+  // O tema só muda quando a apresentadora aperta L — nunca por slide.
+  const claroEfetivo = claro;
 
   useEffect(() => {
     const m = window.matchMedia("(prefers-reduced-motion: reduce)");
