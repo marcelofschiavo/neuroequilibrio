@@ -3,7 +3,7 @@
 import { motion } from "motion/react";
 import { ArrowRight, Compass, ListChecks, Timer, Wind, LayoutList } from "lucide-react";
 import { degrau, escada } from "@/lib/motion";
-import { ARCO, COMPROMISSO, ENCERRAMENTO, NOTIFICACOES, RIFO } from "@/conteudo/marina";
+import { ARCO, COMPROMISSO, ENCERRAMENTO, RIFO } from "@/conteudo/marina";
 import { TrilhaNota } from "../TrilhaNota";
 import { usePalco } from "../PalcoContext";
 import type { Slide } from "@/conteudo/blocos";
@@ -131,21 +131,8 @@ export function Compromisso() {
 /* ---------------------------------------------------------- 17:00 encerramento */
 
 export function Encerramento() {
-  const { reduzido } = usePalco();
   return (
     <div className="flex min-h-0 w-full flex-1 flex-col items-center justify-center gap-[4vmin] text-center">
-      <div aria-hidden className="flex max-w-[64vw] flex-wrap justify-center gap-[1.4vmin] opacity-30">
-        {NOTIFICACOES.slice(0, 6).map((n, i) => (
-          <motion.span
-            key={n.texto}
-            className="rounded-lg border-2 border-line-2 px-3 py-1 text-palco-rodape text-ink-2"
-            animate={reduzido ? undefined : { opacity: [0.5, 1, 0.5] }}
-            transition={{ duration: 5, repeat: Infinity, delay: i * 0.7 }}
-          >
-            {n.texto}
-          </motion.span>
-        ))}
-      </div>
       <motion.h2 initial="entra" animate="ativo" variants={degrau} className="titulo text-palco-titulo text-ink">
         {ENCERRAMENTO.titulo}
       </motion.h2>
@@ -153,7 +140,7 @@ export function Encerramento() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.8, duration: 0.7 }}
-        className="max-w-[32ch] text-palco-corpo leading-tight text-acento [font-family:Georgia,serif]"
+        className="max-w-[30ch] border-t-[6px] border-acento pt-[3vmin] text-palco-corpo leading-snug text-ink-2 [font-family:Georgia,serif]"
       >
         {ENCERRAMENTO.citacao}
       </motion.p>

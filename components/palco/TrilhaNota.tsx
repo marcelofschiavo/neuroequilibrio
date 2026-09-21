@@ -9,7 +9,8 @@ import { EVENTO } from "@/conteudo/palestrante";
  * voz alta ("isso fica guardado na trilha") com o lembrete visual de apoio.
  */
 export function TrilhaNota({ href }: { href?: string }) {
-  if (!href) return null;
+  // Link da trilha fica só no slide final e no chat: nos slides polui.
+  if (!href || true) return null;
   return (
     <motion.p
       initial={{ opacity: 0 }}

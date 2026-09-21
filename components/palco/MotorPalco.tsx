@@ -39,6 +39,14 @@ const PALETAS: { id: Paleta; nome: string; cor: string }[] = [
   { id: "roxo", nome: "Roxo", cor: "#8F5FCF" },
 ];
 
+const FONTES = [
+  { id: "padrao", nome: "Padrão", amostra: "var(--font-source-sans)" },
+  { id: "acolhedora", nome: "Acolhedora (arredondada)", amostra: "var(--font-nunito)" },
+  { id: "classica", nome: "Clássica (serifada)", amostra: "var(--font-lora)" },
+  { id: "legivel", nome: "Alta legibilidade", amostra: "var(--font-atkinson)" },
+] as const;
+type Fonte = (typeof FONTES)[number]["id"];
+
 const CHAVE_CONFIG = "ne26:palco:config";
 
 /**
@@ -61,6 +69,7 @@ export function MotorPalco() {
   const [ajudaOn, setAjudaOn] = useState(false);
   const [escala, setEscala] = useState(1);
   const [paleta, setPaleta] = useState<Paleta>("verde");
+  const [fonte, setFonte] = useState<Fonte>("padrao");
   const fecharRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
@@ -71,6 +80,7 @@ export function MotorPalco() {
       if (c) {
         if (ESCALAS.some((e) => e.v === c.escala)) setEscala(c.escala);
         if (PALETAS.some((p) => p.id === c.paleta)) setPaleta(c.paleta);
+        if (FONTES.some((f) => f.id === c.fonte)) setFonte(c.fonte);
         if (typeof c.claro === "boolean") setClaro(c.claro);
         if (typeof c.animOff === "boolean") setAnimOff(c.animOff);
       }
@@ -189,11 +199,11 @@ export function MotorPalco() {
   useEffect(() => {
     if (!montado) return;
     try {
-      window.localStorage.setItem(CHAVE_CONFIG, JSON.stringify({ escala, paleta, claro, animOff }));
+      window.localStorage.setItem(CHAVE_CONFIG, JSON.stringify({ escala, paleta, fonte, claro, animOff }));
     } catch {
       // modo privado: a configuração vale só nesta sessão
     }
-  }, [montado, escala, paleta, claro, animOff]);
+  }, [montado, escala, paleta, fonte, claro, animOff]);
 
   useEffect(() => {
     const raiz = document.documentElement;
@@ -202,6 +212,15 @@ export function MotorPalco() {
       raiz.style.removeProperty("--escala-texto");
     };
   }, [escala]);
+
+  useEffect(() => {
+    const raiz = document.documentElement;
+    if (fonte !== "padrao") raiz.setAttribute("data-fonte", fonte);
+    else raiz.removeAttribute("data-fonte");
+    return () => {
+      raiz.removeAttribute("data-fonte");
+    };
+  }, [fonte]);
 
   const variantes = useMemo(() => semMovimento(reduzido, slideVariant), [reduzido]);
 
@@ -355,6 +374,27 @@ export function MotorPalco() {
                           </button>
                         );
                       })}
+                    </div>
+                  </section>
+
+                  <section aria-labelledby="cfg-fonte">
+                    <h3 id="cfg-fonte" className="mb-2 font-bold">Tipo de letra</h3>
+                    <div className="flex flex-wrap gap-2" role="group" aria-labelledby="cfg-fonte">
+                      {FONTES.map((f) => (
+                        <button
+                          key={f.id}
+                          type="button"
+                          aria-pressed={fonte === f.id}
+                          onClick={() => setFonte(f.id)}
+                          style={{ fontFamily: `${f.amostra}, sans-serif` }}
+                          className={`rounded-lg border-2 px-4 py-2 font-semibold ${
+                            fonte === f.id ? "border-acento bg-acento text-sobre-acento" : "border-line-2 bg-surface-2 text-ink"
+                          }`}
+                        >
+                          {f.nome}
+                          {fonte === f.id && <span aria-hidden> ✓</span>}
+                        </button>
+                      ))}
                     </div>
                   </section>
 

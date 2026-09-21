@@ -195,10 +195,10 @@ const PEDRINHAS = [
 function VisualMochila() {
   const { reduzido } = usePalco();
   return (
-    <div className="grid h-full min-h-0 grid-cols-[auto_1fr] items-center gap-[2vmin]">
+    <div className="grid h-full min-h-0 grid-cols-[auto_minmax(0,1fr)] grid-rows-[minmax(0,1fr)] items-center gap-[2vmin]">
       <motion.svg
         viewBox="0 0 300 340"
-        className="h-full max-h-full w-auto"
+        className="h-full max-h-full min-h-0 w-auto"
         role="img"
         aria-label="Uma mochila transparente cheia de pedrinhas, com uma pedra grande e vermelha em cima: o turno descoberto."
         animate={reduzido ? undefined : { scaleY: [1, 1, 0.965] }}
@@ -235,7 +235,7 @@ function VisualMochila() {
         />
       </motion.svg>
 
-      <ul className="flex flex-col gap-[1.2vmin] text-palco-nota font-semibold leading-snug text-ink">
+      <ul className="flex flex-col gap-[1.2vmin] text-palco-rodape font-semibold leading-snug text-ink">
         <li className="flex items-start gap-3 rounded-xl border-[3px] border-alerta bg-alerta-wash px-3 py-2">
           <span aria-hidden className="mt-[0.35em] h-[0.9em] w-[0.9em] shrink-0 rounded-full bg-alerta" />
           <span>

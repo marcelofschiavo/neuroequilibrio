@@ -224,3 +224,8 @@ button:not(:disabled) { cursor: pointer; }
 .palco-grade :is(h1, h2, h3, p, li) {
   text-wrap: balance;
 }
+
+/* Fontes alternativas escolhidas nas configurações do palco. */
+[data-fonte="acolhedora"] { --font-corpo: var(--font-nunito), ui-sans-serif, system-ui, sans-serif; --font-titulo: var(--font-nunito), ui-sans-serif, system-ui, sans-serif; }
+[data-fonte="classica"] { --font-corpo: var(--font-lora), Georgia, serif; --font-titulo: var(--font-playfair), Georgia, serif; }
+[data-fonte="legivel"] { --font-corpo: var(--font-atkinson), ui-sans-serif, system-ui, sans-serif; --font-titulo: var(--font-atkinson), ui-sans-serif, system-ui, sans-serif; }
