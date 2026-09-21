@@ -1,12 +1,13 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { AnimatePresence, MotionConfig, motion } from "motion/react";
+import { MotionConfig, motion } from "motion/react";
 import { Settings } from "lucide-react";
 import { slide as slideVariant, semMovimento } from "@/lib/motion";
 import { SEQUENCIA_PALCO as SEQUENCIA, lerPosicaoSalva, salvarPosicao } from "@/lib/palco";
 import { Slide } from "./Slide";
 import { Rodape } from "./Rodape";
+import { NavBlocos } from "./NavBlocos";
 import { PalcoCtx } from "./PalcoContext";
 
 const ATALHOS: [string, string][] = [
@@ -257,24 +258,24 @@ export function MotorPalco() {
 
           <main className="palco-grade">
             <h1 className="sr-only">Neurociências &amp; Equilíbrio Emocional — palestra com Priscila Ramos</h1>
-            <AnimatePresence mode="wait" custom={direcao}>
-              <motion.div
-                key={atual.slide.id}
-                custom={direcao}
-                initial="entra"
-                animate="ativo"
-                exit="sai"
-                variants={variantes}
-                className="palco-conteudo"
-              >
-                <Slide slide={atual.slide} />
-              </motion.div>
-            </AnimatePresence>
+            {/* Sem AnimatePresence "wait": com setas apertadas depressa, a saída
+                pendente travava a navegação. Cada slide só anima a entrada. */}
+            <motion.div
+              key={atual.slide.id}
+              custom={direcao}
+              initial="entra"
+              animate="ativo"
+              variants={variantes}
+              className="palco-conteudo"
+            >
+              <Slide slide={atual.slide} />
+            </motion.div>
 
             <Rodape />
           </main>
 
           <aside aria-label="Controles da apresentação">
+          <NavBlocos atual={atual.bloco.numero} />
           <div
             role="progressbar"
             aria-label="Progresso da apresentação"

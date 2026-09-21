@@ -57,6 +57,8 @@ export type Bloco = {
   id: string;
   numero: number;
   titulo: string;
+  /** Nome curto para a barra de blocos no topo do palco. */
+  curto: string;
   duracaoMin: number;
   slides: Slide[];
 };
@@ -64,6 +66,7 @@ export type Bloco = {
 export const BLOCOS: Bloco[] = [
   {
     id: "abertura",
+    curto: "Abertura",
     numero: 1,
     titulo: "Abertura",
     duracaoMin: 8,
@@ -92,6 +95,7 @@ export const BLOCOS: Bloco[] = [
   },
   {
     id: "ato1",
+    curto: "08:00",
     numero: 2,
     titulo: "Ato 1 · 08:00",
     duracaoMin: 7,
@@ -116,6 +120,7 @@ export const BLOCOS: Bloco[] = [
   },
   {
     id: "ato2",
+    curto: "11:40",
     numero: 3,
     titulo: "Ato 2 · 11:40",
     duracaoMin: 7,
@@ -134,6 +139,7 @@ export const BLOCOS: Bloco[] = [
   },
   {
     id: "ato3",
+    curto: "14:00",
     numero: 4,
     titulo: "Ato 3 · 14:00",
     duracaoMin: 8,
@@ -160,6 +166,7 @@ export const BLOCOS: Bloco[] = [
   },
   {
     id: "ato4",
+    curto: "16:20",
     numero: 5,
     titulo: "Ato 4 · 16:20",
     duracaoMin: 7,
@@ -178,6 +185,7 @@ export const BLOCOS: Bloco[] = [
   },
   {
     id: "transformacao",
+    curto: "Arco",
     numero: 6,
     titulo: "O arco da Marina",
     duracaoMin: 5,
@@ -195,6 +203,7 @@ export const BLOCOS: Bloco[] = [
   },
   {
     id: "perguntas",
+    curto: "Perguntas",
     numero: 7,
     titulo: "Perguntas",
     duracaoMin: 6,

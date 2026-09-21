@@ -171,7 +171,7 @@ body {
   display: grid;
   grid-template-rows: minmax(0, 1fr) auto;
   height: 100dvh;
-  padding: 3.6vmin 5vmin 3vmin;
+  padding: 6.4vmin 5vmin 3vmin;
   gap: 0;
 }
 /* "safe center": quando o conteúdo é mais alto que a área, alinha pelo topo
