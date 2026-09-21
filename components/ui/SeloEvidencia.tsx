@@ -1,16 +1,12 @@
 import { ROTULO_EVIDENCIA, type Evidencia } from "@/conteudo/referencias";
 
-const COR: Record<Evidencia, string> = {
-  consolidado: "🟢",
-  moderada: "🟡",
-  debate: "⚪",
-};
+const MARCA: Record<Evidencia, string> = { consolidado: "●●●", moderada: "●●○", debate: "●○○" };
 
-/** Selo de rigor científico — regra do projeto: todo dado leva um. */
+/** Selo de rigor científico: texto + marcador de 3 pontos (nunca só cor nem só emoji). */
 export function SeloEvidencia({ evidencia, className = "" }: { evidencia: Evidencia; className?: string }) {
   return (
-    <span className={`dados inline-flex items-center gap-1.5 text-xs uppercase tracking-wide text-muted ${className}`}>
-      <span aria-hidden>{COR[evidencia]}</span>
+    <span className={`dados inline-flex items-center gap-2 font-bold uppercase tracking-wide ${className}`}>
+      <span aria-hidden>{MARCA[evidencia]}</span>
       {ROTULO_EVIDENCIA[evidencia]}
     </span>
   );

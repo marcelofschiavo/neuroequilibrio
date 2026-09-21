@@ -63,7 +63,7 @@ export default function PaginaTrilha() {
 
       <section className="mt-10">
         <h2 className="mb-1 text-lg font-bold text-ink">O essencial</h2>
-        <p className="mb-4 text-sm text-muted">Os 5 liberam o certificado de participação.</p>
+        <p className="mb-4 text-sm text-muted">Os {MODULOS_TRILHA.length} liberam o certificado de participação.</p>
         <ListaModulos modulos={MODULOS_ESSENCIAIS} concluidos={concluidos} />
       </section>
 

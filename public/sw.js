@@ -5,7 +5,7 @@
  * cache para navegação. Precache é resiliente de propósito: um item que
  * falhe não pode derrubar a instalação inteira.
  */
-const VERSAO = "ne26-v1";
+const VERSAO = "ne26-v2";
 const CACHE_ESTATICO = `${VERSAO}-estatico`;
 const CACHE_PAGINAS = `${VERSAO}-paginas`;
 
@@ -14,6 +14,7 @@ const PRECACHE = [
   "/palco",
   "/palco/aguardando",
   "/trilha",
+  "/trilha/rifo",
   "/manifest.webmanifest",
   "/icon-192.png",
   "/icon-512.png",
@@ -54,6 +55,8 @@ function ehAssetEstatico(url) {
     url.pathname.startsWith("/fontes/") ||
     url.pathname.startsWith("/logo/") ||
     url.pathname.startsWith("/palestrante/") ||
+    url.pathname.startsWith("/marina/") ||
+    url.pathname.startsWith("/cerebro/") ||
     url.pathname.startsWith("/_next/static/") ||
     url.pathname.startsWith("/_next/image") ||
     /\.(png|jpg|jpeg|webp|svg|woff2?|ttf)$/.test(url.pathname)

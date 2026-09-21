@@ -74,7 +74,24 @@ export async function gerarPlanoDia(plano: PlanoDia): Promise<void> {
     y += 7 * linhas.length + 2;
   });
 
-  y += 10;
+  y += 8;
+  doc.setDrawColor(CORES_PDF.ACENTO);
+  doc.line(20, y, largura - 20, y);
+  y += 12;
+
+  doc.setFontSize(13);
+  doc.setTextColor(CORES_PDF.GRAFITE);
+  doc.text("Meu compromisso", 20, y);
+  y += 8;
+  doc.setFontSize(11);
+  doc.setTextColor(CORES_PDF.CINZA);
+  const compromisso = plano.compromisso.trim()
+    ? `A partir de amanhã, para proteger o meu cérebro, eu vou: ${plano.compromisso.trim()}`
+    : "—";
+  const linhasComp = doc.splitTextToSize(compromisso, largura - 44);
+  doc.text(linhasComp, 22, y);
+  y += 7 * linhasComp.length + 8;
+
   doc.setDrawColor(CORES_PDF.ACENTO);
   doc.line(20, y, largura - 20, y);
   y += 10;

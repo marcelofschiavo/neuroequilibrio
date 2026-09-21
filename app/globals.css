@@ -21,15 +21,16 @@
   --surface-2: #ECF1EF;
   --ink:       #0F2A24;
   --ink-2:     #3E5850;
-  --muted:     #7E938C;
+  --muted:     #566B62;
   --line:      #DCE6E2;
   --line-2:    #C3D2CC;
-  --acento:    #4E9A2A;
-  --acento-2:  #3E7A21;
+  --acento:    #3F7F22;
+  --acento-2:  #2F5E19;
   --acento-wash:#E9F4E1;
-  --alerta:    #B8542C;
+  --alerta:    #A23B17;
   --alerta-wash:#F6E4DA;
-  --focus:     #4E9A2A;
+  --focus:     #3F7F22;
+  --sobre-acento:#FFFFFF;
   color-scheme: light;
 }
 
@@ -40,15 +41,16 @@
   --surface-2: #134634;
   --ink:       #F5F7F5;
   --ink-2:     #C4D6CD;
-  --muted:     #7FA69A;
+  --muted:     #93B8AC;
   --line:      #1C5642;
   --line-2:    #24684F;
   --acento:    #6CC331;
   --acento-2:  #58A825;
   --acento-wash:#123B2B;
-  --alerta:    #E98C5C;
+  --alerta:    #F2A07A;
   --alerta-wash:#3A2A20;
   --focus:     #6CC331;
+  --sobre-acento:#062319;
   color-scheme: dark;
 }
 
@@ -59,15 +61,16 @@
   --surface-2: #E6EFE4;
   --ink:       #0B2E24;
   --ink-2:     #2E4A40;
-  --muted:     #6B8177;
+  --muted:     #4E6157;
   --line:      #D2E1CE;
   --line-2:    #B9CFB3;
-  --acento:    #3E7A21;
+  --acento:    #37711E;
   --acento-2:  #2F5E19;
   --acento-wash:#E3F0DE;
-  --alerta:    #B8542C;
+  --alerta:    #A23B17;
   --alerta-wash:#F6E4DA;
-  --focus:     #3E7A21;
+  --focus:     #37711E;
+  --sobre-acento:#FFFFFF;
   color-scheme: light;
 }
 
@@ -84,6 +87,9 @@
   --acento:    #7CFF3B;
   --acento-2:  #7CFF3B;
   --acento-wash:#000000;
+  --alerta:    #FFB020;
+  --alerta-wash:#000000;
+  --sobre-acento:#000000;
   color-scheme: dark;
 }
 
@@ -107,16 +113,18 @@
   --color-acento-wash: var(--acento-wash);
   --color-alerta:      var(--alerta);
   --color-alerta-wash: var(--alerta-wash);
+  --color-sobre-acento: var(--sobre-acento);
 
   --font-corpo:  var(--font-source-sans), ui-sans-serif, system-ui, sans-serif;
   --font-titulo: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
   --font-dados:  var(--font-plex-mono), ui-monospace, monospace;
 
-  --text-palco-mega:   clamp(72px, 11vw, 160px);
+  --text-palco-mega:   clamp(64px, 9vw, 140px);
   --text-palco-titulo: clamp(48px, 6.4vw, 96px);
-  --text-palco-corpo:  clamp(30px, 3.4vw, 52px);
-  --text-palco-nota:   clamp(20px, 2vw, 30px);
-  --text-palco-rodape: clamp(15px, 1.4vw, 22px);
+  --text-palco-corpo:  clamp(34px, 2.9vw, 60px);
+  --text-palco-nota:   clamp(26px, 1.9vw, 38px);
+  --text-palco-texto:  clamp(28px, 2.3vw, 46px);
+  --text-palco-rodape: clamp(18px, 1.25vw, 24px);
 }
 
 * { box-sizing: border-box; }
@@ -137,9 +145,9 @@ body {
 
 .palco-grade {
   display: grid;
-  grid-template-rows: minmax(0, 66fr) minmax(0, 34fr);
+  grid-template-rows: minmax(0, 1fr) auto;
   height: 100dvh;
-  padding: 4vmin 6vmin;
+  padding: 3.6vmin 5vmin 3vmin;
   gap: 0;
 }
 /* "safe center": quando o conteúdo é mais alto que a área, alinha pelo topo
@@ -147,6 +155,7 @@ body {
 .palco-conteudo { min-height: 0; display: flex; flex-direction: column; justify-content: safe center; }
 .palco-rodape {
   align-self: end;
+  padding-top: 1.6vmin;
   font-family: var(--font-dados);
   font-size: var(--text-palco-rodape);
   letter-spacing: .12em;
@@ -156,6 +165,9 @@ body {
 }
 
 h1, h2, h3 { text-wrap: balance; margin: 0; }
+
+/* O preflight do Tailwind zera o cursor de <button>; sem isto nenhum botão mostra a mãozinha. */
+button:not(:disabled) { cursor: pointer; }
 
 /* Título de destaque — sans geométrica em itálico, ecoando o traço do
    logo EDC (a barra verde inclinada que corta as letras). */

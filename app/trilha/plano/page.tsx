@@ -6,6 +6,7 @@ import { MarcarConcluido } from "@/components/trilha/MarcarConcluido";
 import { Logo } from "@/components/ui/Logo";
 import { lerPlanoDia, gravarPlanoDia, type PlanoDia, type BlocoHorario, type NivelEnergia } from "@/lib/local";
 import { gerarPlanoDia } from "@/lib/pdf-docs/plano";
+import { COMPROMISSO } from "@/conteudo/marina";
 
 const BLOCOS: { id: BlocoHorario; rotulo: string }[] = [
   { id: "manha", rotulo: "Manhã" },
@@ -21,7 +22,7 @@ const NIVEIS: { id: NivelEnergia; rotulo: string }[] = [
 ];
 
 export default function PaginaPlano() {
-  const [plano, setPlano] = useState<PlanoDia>({ energia: {}, blocosMonotarefa: ["", "", ""] });
+  const [plano, setPlano] = useState<PlanoDia>({ energia: {}, blocosMonotarefa: ["", "", ""], compromisso: "" });
   const [baixando, setBaixando] = useState(false);
 
   useEffect(() => {
@@ -96,6 +97,36 @@ export default function PaginaPlano() {
             />
           ))}
         </div>
+      </section>
+
+      <section className="mt-10">
+        <h2 className="font-bold text-ink">Meu compromisso</h2>
+        <p className="mt-1 text-sm text-muted">{COMPROMISSO.frase}</p>
+        <div className="mt-3 flex flex-col gap-2" role="group" aria-label="Sugestões de compromisso">
+          {COMPROMISSO.opcoes.map((o) => (
+            <button
+              key={o}
+              type="button"
+              aria-pressed={plano.compromisso === o}
+              onClick={() => atualizar({ ...plano, compromisso: o })}
+              className={`rounded-md border-2 px-3 py-2 text-left text-sm font-semibold transition-colors ${
+                plano.compromisso === o ? "border-acento bg-acento-wash text-ink" : "border-line bg-surface-2 text-ink-2 hover:border-acento"
+              }`}
+            >
+              {o}
+            </button>
+          ))}
+        </div>
+        <label className="mt-3 block text-sm text-muted" htmlFor="compromisso-livre">
+          Ou escreva o seu:
+        </label>
+        <input
+          id="compromisso-livre"
+          value={plano.compromisso}
+          onChange={(e) => atualizar({ ...plano, compromisso: e.target.value })}
+          placeholder="A partir de amanhã, eu vou…"
+          className="mt-1 w-full rounded-md border border-line bg-surface-2 px-4 py-3 text-sm text-ink outline-none focus:border-acento"
+        />
       </section>
 
       <button

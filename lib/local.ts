@@ -54,12 +54,15 @@ export type NivelEnergia = "pico" | "medio" | "vale";
 export type PlanoDia = {
   energia: Partial<Record<BlocoHorario, NivelEnergia>>;
   blocosMonotarefa: string[];
+  /** "A partir de amanhã, para proteger o meu cérebro, eu vou: ___" */
+  compromisso: string;
 };
 
-const PLANO_PADRAO: PlanoDia = { energia: {}, blocosMonotarefa: ["", "", ""] };
+const PLANO_PADRAO: PlanoDia = { energia: {}, blocosMonotarefa: ["", "", ""], compromisso: "" };
 
 export function lerPlanoDia(): PlanoDia {
-  return ler<PlanoDia>("plano-dia", PLANO_PADRAO);
+  // Planos salvos antes do campo "compromisso" existir ganham o padrão.
+  return { ...PLANO_PADRAO, ...ler<Partial<PlanoDia>>("plano-dia", {}) };
 }
 export function gravarPlanoDia(plano: PlanoDia): void {
   escrever("plano-dia", plano);

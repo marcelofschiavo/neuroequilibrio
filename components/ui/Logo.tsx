@@ -39,6 +39,30 @@ export function LogoPalco({ tamanho = 40 }: { tamanho?: number }) {
 }
 
 /**
+ * EDC + Mindheart lado a lado, sobre um painel branco — o logo da Mindheart
+ * tem texto cinza-escuro e não lê bem direto sobre o fundo escuro do palco.
+ */
+export function LogosParceiras({ altura = 64 }: { altura?: number }) {
+  return (
+    <div
+      className="inline-flex items-center gap-8 rounded-2xl bg-white px-6 py-3 shadow-sm"
+      role="group"
+      aria-label="EDC Group e Mindheart Human Development"
+    >
+      <Logo tamanho={altura} />
+      <span aria-hidden className="h-[70%] w-px self-stretch bg-[#C9D2CE]" />
+      <Image
+        src="/logo/mindheart.png"
+        alt="Mindheart Human Development"
+        width={Math.round((altura * 727) / 550)}
+        height={altura}
+        style={{ height: altura, width: "auto" }}
+      />
+    </div>
+  );
+}
+
+/**
  * O traço: a barra verde horizontal que corta o "EDC" no logo. Vira elemento
  * recorrente — linha do tempo, divisória de bloco, progresso da trilha.
  */

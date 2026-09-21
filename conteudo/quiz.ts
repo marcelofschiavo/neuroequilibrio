@@ -1,5 +1,4 @@
 import type { Evidencia } from "./referencias";
-import type { Personagem } from "./personagens";
 
 /**
  * Quiz final — perguntas e respostas corretas da Priscila, sem alteração.
@@ -19,7 +18,8 @@ export type Alternativa = "A" | "B" | "C" | "D";
 
 export type PerguntaQuiz = {
   id: string;
-  personagem: Personagem["id"];
+  /** Ato do dia da Marina a que a pergunta se liga. */
+  ato: "ato1" | "ato2" | "ato3" | "ato4";
   gancho: string;
   pergunta: string;
   alternativas: Record<Alternativa, string>;
@@ -35,8 +35,8 @@ export type PerguntaQuiz = {
 export const QUIZ: PerguntaQuiz[] = [
   {
     id: "q1",
-    personagem: "rafael",
-    gancho: "Rafael, 11h40, relendo o mesmo currículo pela quarta vez.",
+    ato: "ato1",
+    gancho: "Marina, 08h, prometendo a si mesma quatro horas de foco sem levantar.",
     pergunta:
       "Muitos profissionais tentam manter o foco ininterrupto por 4 ou 5 horas seguidas. Do ponto de vista da neurociência da produtividade, por que essa estratégia costuma falhar?",
     alternativas: {
@@ -59,8 +59,8 @@ export const QUIZ: PerguntaQuiz[] = [
   },
   {
     id: "q2",
-    personagem: "luciana",
-    gancho: "Luciana, 15h, travada diante da escala do cliente depois de uma manhã de incêndios.",
+    ato: "ato2",
+    gancho: "Marina, 11h40, travada diante do turno descoberto depois de uma manhã de pequenas decisões.",
     pergunta:
       "Um colaborador passa a manhã inteira respondendo dezenas de mensagens curtas e apagando pequenos incêndios. À tarde, ele não consegue tomar uma decisão estratégica importante. Como a neurociência explica esse fenômeno?",
     alternativas: {
@@ -83,8 +83,8 @@ export const QUIZ: PerguntaQuiz[] = [
   },
   {
     id: "q3",
-    personagem: "beatriz",
-    gancho: "Beatriz, 14h10, coração disparado depois de uma ligação difícil.",
+    ato: "ato3",
+    gancho: "Marina, 14h, coração disparado depois da ligação do cliente.",
     pergunta:
       "No meio de uma tarde exaustiva no trabalho, qual ferramenta com comprovação neurobiológica atua de forma mais rápida (em tempo real) para 'frear' o estresse e promover calma imediata?",
     alternativas: {
@@ -107,8 +107,8 @@ export const QUIZ: PerguntaQuiz[] = [
   },
   {
     id: "q4",
-    personagem: "marcos",
-    gancho: "Marcos, 16h, três janelas abertas e um zero a mais na proposta.",
+    ato: "ato4",
+    gancho: "Marina, 16h20, três janelas abertas e um zero a mais na proposta.",
     pergunta:
       "Quando você tenta lidar com várias demandas \"urgentes\" ao mesmo tempo (multitarefa), o que realmente acontece no seu cérebro?",
     alternativas: {

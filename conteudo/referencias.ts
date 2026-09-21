@@ -200,6 +200,41 @@ export const REFERENCIAS: Referencia[] = [
     doi: "10.1038/427311a",
     achado: "Adultos que aprenderam malabarismo tiveram aumento de massa cinzenta em áreas visuomotoras em 3 meses — a plasticidade continua na vida adulta.",
   },
+  {
+    id: "kurzban2013",
+    curta: "Kurzban et al., Behav Brain Sci 2013",
+    completa: "Kurzban, R., Duckworth, A., Kable, J. W., & Myers, J. (2013). An opportunity cost model of subjective effort and task performance. Behavioral and Brain Sciences, 36(6), 661–679.",
+    doi: "10.1017/S0140525X12003196",
+    achado: "Propõe que a sensação de cansaço mental funciona como um sinal do custo de continuar naquela tarefa em vez de outra — hipótese influente, ainda em debate.",
+  },
+  {
+    id: "gollwitzer2006",
+    curta: "Gollwitzer & Sheeran, Adv Exp Soc Psychol 2006 (meta-análise)",
+    completa: "Gollwitzer, P. M., & Sheeran, P. (2006). Implementation intentions and goal achievement: a meta-analysis of effects and processes. Advances in Experimental Social Psychology, 38, 69–119.",
+    doi: "10.1016/S0065-2601(06)38002-1",
+    achado: "Planos do tipo 'se acontecer X, então faço Y' aumentam de forma consistente a chance de cumprir o que se planejou — inclusive quando há distrações.",
+  },
+  {
+    id: "lieberman2007",
+    curta: "Lieberman et al., Psychol Sci 2007",
+    completa: "Lieberman, M. D., Eisenberger, N. I., Crockett, M. J., Tom, S. M., Pfeifer, J. H., & Way, B. M. (2007). Putting feelings into words: affect labeling disrupts amygdala activity in response to affective stimuli. Psychological Science, 18(5), 421–428.",
+    doi: "10.1111/j.1467-9280.2007.01916.x",
+    achado: "Nomear a emoção que se sente reduziu a atividade da amígdala em resposta a estímulos emocionais — base do passo 'Nomeie'.",
+  },
+  {
+    id: "eisenberger2003",
+    curta: "Eisenberger, Lieberman & Williams, Science 2003",
+    completa: "Eisenberger, N. I., Lieberman, M. D., & Williams, K. D. (2003). Does rejection hurt? An fMRI study of social exclusion. Science, 302(5643), 290–292.",
+    doi: "10.1126/science.1089134",
+    achado: "Ser excluído socialmente ativou regiões cerebrais também envolvidas na dor física — a 'dor social' é real no cérebro.",
+  },
+  {
+    id: "woo2014",
+    curta: "Woo et al., Nat Commun 2014",
+    completa: "Woo, C.-W., Koban, L., Kross, E., Lindquist, M. A., Banich, M. T., Ruzic, L., Andrews-Hanna, J. R., & Wager, T. D. (2014). Separate neural representations for physical pain and social rejection. Nature Communications, 5, 5380.",
+    doi: "10.1038/ncomms6380",
+    achado: "Contrapeso importante: os padrões cerebrais da dor física e da rejeição social se sobrepõem em parte, mas são distintos — por isso falamos em sobreposição parcial.",
+  },
 ];
 
 export function referencia(id: string): Referencia {
@@ -211,3 +246,13 @@ export function referencia(id: string): Referencia {
 export function fontesCurtas(ids: string[]): string {
   return ids.map((id) => referencia(id).curta).join(" · ");
 }
+
+/** Forma mínima para a tela do palco: "Autor et al. 2022". A referência completa fica na trilha. */
+export function citacaoCurta(id: string): string {
+  const { curta } = referencia(id);
+  const primeiro = curta.split(",")[0].replace(/ et al\.?$/, "").trim();
+  const ano = curta.match(/\b(19|20)\d{2}\b/)?.[0] ?? "";
+  const varios = /et al|&/.test(curta) && !primeiro.includes("&");
+  return `${primeiro}${varios ? " et al." : ""} ${ano}`.trim();
+}
+

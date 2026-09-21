@@ -17,15 +17,15 @@ export function Fecho({ slide }: { slide: Slide }) {
   return (
     <div className="grid w-full grid-cols-[1fr_auto] items-center gap-14">
       <div className="flex min-w-0 flex-col gap-7">
-        <motion.h1 initial="entra" animate="ativo" variants={degrau} className="titulo text-palco-titulo text-acento">
+        <motion.h2 initial="entra" animate="ativo" variants={degrau} className="titulo text-palco-titulo text-acento">
           {slide.titulo}
-        </motion.h1>
+        </motion.h2>
         {slide.destaque && (
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.5, ease: ENTRADA }}
-            className="text-palco-nota text-ink-2"
+            className="text-palco-texto leading-snug text-ink-2"
           >
             {slide.destaque}
           </motion.p>
@@ -36,10 +36,15 @@ export function Fecho({ slide }: { slide: Slide }) {
           transition={{ delay: 1, duration: 0.5 }}
           className="flex flex-col gap-1 border-t-2 border-line pt-6"
         >
-          <p className="text-palco-nota font-semibold text-ink">{PALESTRANTE.nome}</p>
-          <p className="dados text-sm uppercase tracking-wide text-acento">
-            {PALESTRANTE.contatos.map((c) => c.rotulo).join("  ·  ")}
-          </p>
+          <p className="text-palco-texto font-bold text-ink">{PALESTRANTE.nome}</p>
+          <ul className="flex flex-col gap-1 text-palco-nota font-semibold text-ink-2">
+            {PALESTRANTE.contatos.map((c) => (
+              <li key={c.rede}>
+                <span className="dados text-muted">{c.rede}: </span>
+                <span className="text-acento-2 [overflow-wrap:anywhere]">{c.rotulo}</span>
+              </li>
+            ))}
+          </ul>
         </motion.div>
       </div>
 
@@ -51,15 +56,16 @@ export function Fecho({ slide }: { slide: Slide }) {
       >
         <motion.div initial="ativo" animate="ativo" variants={pulsa} className="rounded-3xl bg-white p-[2.4vmin]">
           <QRCodeSVG
+            title="QR code para abrir a trilha"
             value={url}
             size={512}
             level="M"
             bgColor="#FFFFFF"
             fgColor="#1E1F21"
-            style={{ width: "30vmin", height: "30vmin", display: "block" }}
+            style={{ width: "36vmin", height: "36vmin", display: "block" }}
           />
         </motion.div>
-        <p className="dados text-palco-rodape uppercase tracking-[0.14em] text-ink">{rotuloUrl}</p>
+        <p className="dados text-palco-nota font-semibold text-ink [overflow-wrap:anywhere]">{rotuloUrl}</p>
       </motion.div>
     </div>
   );

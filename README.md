@@ -8,25 +8,39 @@ Produção: `neuroequilibrioemocional.vercel.app`
 
 ## Narrativa
 
-Um dia de trabalho — 8h às 18h — de quatro personagens fictícios (Rafael, Luciana,
-Beatriz, Marcos), cada um vivendo o mecanismo de uma das 4 perguntas do quiz final da
-palestrante. Ver `conteudo/blocos.ts` (roteiro do palco), `conteudo/personagens.ts`,
-`conteudo/quiz.ts` e `conteudo/referencias.ts` (toda citação científica, com selo de
-evidência e DOI).
+Um dia de trabalho da **Marina**, coordenadora de operações da EDC (personagem
+fictícia), em quatro atos — 08:00, 11:40, 14:00 e 16:20 — e o fecho às 17:00.
+Cada ato tem uma cena em quadrinho, o mecanismo com o **cérebro da Marina**
+(regiões que acendem) e o método prático: Regra 90-3-1, Arquitetura de Decisão,
+Protocolo P.N.E. (Perceba · Nomeie · Escolha) e Monotarefa Sequencial, que se
+juntam no mapa **R.I.F.O.** Estrutura e textos seguem o modelo enviado pela
+Priscila ("Produtividade Sustentável: O Cérebro da Marina no Expediente").
+
+Onde mora cada coisa:
+- `conteudo/blocos.ts` — a ordem dos slides e as notas da apresentadora
+- `conteudo/marina.ts` — todo o texto dos slides (cenas, atos, métodos)
+- `conteudo/cerebro.ts` — as 4 regiões (o que faz / onde fica / por que importa)
+- `conteudo/referencias.ts` — cada citação, com DOI e selo de evidência
+- `conteudo/quiz.ts` — perguntas do Kahoot (não é renderizado no site)
 
 ## Decisões de produto
 
-- **A plateia não usa o celular durante a palestra.** `/palco` é um slide deck local,
-  sem backend — navega de teclado/passador, funciona offline (service worker).
-- **Sem Supabase, sem cadastro, sem backoffice.** Tudo que a trilha coleta
-  (mapa de energia, blocos de monotarefa, resultado do quiz, nome do certificado) fica
-  só no `localStorage` do aparelho — nada trafega para servidor.
-- **Rigor científico.** Toda explicação do quiz final foi revisada contra a
-  literatura atual (`conteudo/quiz.ts` guarda o texto original da palestrante em
-  `explicacaoOriginal` e a nota do ajuste em `notaAjuste`, para ela aprovar). Cada dado
-  técnico leva um selo — 🟢 consolidado, 🟡 evidência moderada, ⚪ modelo em debate.
-- **Identidade EDC Group.** Fundo grafite + verde (`app/globals.css`), com o traço
-  horizontal do logo (o `<Traco>` em `components/ui/Logo.tsx`) como elemento recorrente.
+- **Interação da plateia:** só duas perguntas, no chat de texto da sessão
+  ("uma palavra" no slide 08:15 e o compromisso no fim). O site não coleta nada.
+- **Quiz no Kahoot da EDC**, fora do site — as respostas não podem vazar antes.
+- **Sem servidor:** tudo que a trilha guarda fica no `localStorage` do aparelho.
+- **Rigor científico:** todo dado leva selo (consolidado / moderada / em debate)
+  e fonte. Gráficos são marcados como ilustrativos. A "Regra 90-3-1" é
+  apresentada como regra prática, não como lei da biologia.
+- **Identidade:** verde-petróleo e verde da EDC, com a marca Mindheart ao lado.
+  Fundo claro por padrão; slides de abertura e fecho de capítulo são escuros.
+
+## Acessibilidade do palco
+
+Texto mínimo de 26 px (26–44 px no corpo), contraste ≥ 4,5:1 nos dois temas
+(medido), estado nunca só por cor, animações desligáveis (tecla `A` ou preferência
+do sistema), regiões do cérebro acessíveis por Tab/Enter, leitor de tela avisa o
+slide atual. Teclas: `?` abre a ajuda no próprio palco.
 
 ## Rodar localmente
 
@@ -51,7 +65,8 @@ components/
   palco/    trilha/    ui/
 conteudo/
   blocos.ts          o roteiro do palco — fonte da verdade
-  personagens.ts     Rafael, Luciana, Beatriz, Marcos
+  marina.ts          o dia da Marina: cenas, atos, métodos (texto dos slides)
+  cerebro.ts         as 4 regiões do cérebro da Marina
   quiz.ts            as 4 perguntas do quiz final, com explicação revisada
   neuromitos.ts       módulo extra "mito ou ciência?"
   referencias.ts     toda referência científica citada, com DOI e selo de evidência
@@ -66,8 +81,6 @@ lib/
 
 ## Pendências
 
-Marcadas como `// TODO(...)` no código:
 - Aprovação da Priscila para as explicações ajustadas do quiz (`conteudo/quiz.ts`).
-- Ícones do PWA (`public/icon-192.png`, `icon-512.png`) ainda são placeholder — trocar
-  por um ícone com o traço EDC.
-- Deploy Vercel do projeto (`neuroequilibrioemocional.vercel.app` ainda sem build).
+- Priscila decidir o "O" do R.I.F.O. (hoje "Uma coisa por vez", como no modelo — a sigla não fecha).
+- As cenas da Marina são ilustrações geradas por IA (Cloudflare Workers AI); a Priscila deve validar o visual.

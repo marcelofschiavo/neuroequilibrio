@@ -47,7 +47,7 @@ export default function PaginaNeuromitos() {
       <p className="mt-2 text-ink-2">8 afirmações populares sobre o cérebro. Quais se sustentam?</p>
 
       {!fim && (
-        <div className="mt-6 flex gap-1.5" aria-label={`Pergunta ${indice + 1} de ${NEUROMITOS.length}`}>
+        <div className="mt-6 flex gap-1.5" role="img" aria-label={`Pergunta ${indice + 1} de ${NEUROMITOS.length}`}>
           {NEUROMITOS.map((m, i) => (
             <span key={m.id} className={`h-1.5 flex-1 rounded-full ${i <= indice ? "bg-acento" : "bg-line"}`} />
           ))}
