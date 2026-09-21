@@ -1,10 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
 import { MarcarConcluido } from "@/components/trilha/MarcarConcluido";
-import { Logo } from "@/components/ui/Logo";
+import { Marcas } from "@/components/trilha/Marcas";
 import { pagina } from "@/lib/motion";
 
 const PASSOS = [
@@ -44,41 +43,38 @@ export default function PaginaMicropausa() {
   }
 
   return (
-    <main className="mx-auto flex min-h-screen max-w-md flex-col px-6 py-16">
+    <main className="mx-auto flex min-h-screen max-w-2xl flex-col px-6 py-12">
       <MarcarConcluido modulo="micropausa" />
-      <Link href="/trilha" className="text-sm text-muted hover:text-ink">
-        ← Trilha
-      </Link>
-      <Logo tamanho={32} />
-      <h1 className="titulo mt-4 text-3xl text-ink">Regra 90-3-1: pausa de 3 min</h1>
-      <p className="mt-2 text-ink-2">Depois de 90 minutos de foco: 3 minutos de pausa deliberada e 1 única ação de retorno. Regra prática — o ritmo varia de pessoa para pessoa.</p>
+      <Marcas />
+      <h1 className="titulo mt-8 text-4xl text-ink sm:text-5xl">Regra 90‑3‑1: pausa de 3 min</h1>
+      <p className="mt-3 max-w-prose text-lg leading-relaxed text-ink-2">Depois de 90 minutos de foco: 3 minutos de pausa deliberada e 1 única ação de retorno. Regra prática — o ritmo varia de pessoa para pessoa.</p>
 
       <div className="mt-10 flex-1">
         <AnimatePresence mode="wait">
           {!ativo && !terminou && (
-            <motion.div key="inicio" initial="entra" animate="ativo" exit="sai" variants={pagina} className="rounded-lg border border-line bg-surface-2 p-6 text-center">
+            <motion.div key="inicio" initial="entra" animate="ativo" exit="sai" variants={pagina} className="rounded-2xl border border-line bg-surface-2 p-8 text-center">
               <p className="text-ink-2">4 passos, cerca de 2 minutos.</p>
-              <button onClick={comecar} className="mt-4 rounded-md bg-acento px-6 py-3 font-semibold text-white hover:brightness-95">
+              <button onClick={comecar} className="mt-4 rounded-full bg-acento px-8 py-3 text-lg font-bold text-sobre-acento hover:brightness-95">
                 Começar
               </button>
             </motion.div>
           )}
 
           {ativo && (
-            <motion.div key={passo} initial="entra" animate="ativo" exit="sai" variants={pagina} className="rounded-lg border border-acento bg-acento-wash p-6 text-center">
+            <motion.div key={passo} initial="entra" animate="ativo" exit="sai" variants={pagina} className="rounded-2xl border border-acento bg-acento-wash p-8 text-center">
               <p className="dados text-xs uppercase tracking-wide text-acento-2">
                 passo {passo + 1} de {PASSOS.length}
               </p>
               <p className="mt-2 titulo text-2xl text-ink">{PASSOS[passo].titulo}</p>
-              <p className="mt-2 text-sm text-ink-2">{PASSOS[passo].desc}</p>
+              <p className="mt-2 text-base text-ink-2">{PASSOS[passo].desc}</p>
               <p className="dados mt-4 text-4xl font-black text-acento">{segundos}s</p>
             </motion.div>
           )}
 
           {terminou && (
-            <motion.div key="fim" initial="entra" animate="ativo" exit="sai" variants={pagina} className="rounded-lg border border-line bg-surface-2 p-6 text-center">
+            <motion.div key="fim" initial="entra" animate="ativo" exit="sai" variants={pagina} className="rounded-2xl border border-line bg-surface-2 p-8 text-center">
               <p className="titulo text-2xl text-ink">Pronto.</p>
-              <p className="mt-2 text-ink-2">Volte pra tarefa devagar.</p>
+              <p className="mt-3 max-w-prose text-lg leading-relaxed text-ink-2">Volte pra tarefa devagar.</p>
               <button onClick={comecar} className="mt-4 text-sm font-semibold text-acento-2 underline">
                 Fazer de novo
               </button>

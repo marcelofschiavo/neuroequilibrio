@@ -2,7 +2,7 @@ import Link from "next/link";
 import { FUNIL, PNE, REGRA_903, RIFO, MONOTAREFA } from "@/conteudo/marina";
 import { referencia } from "@/conteudo/referencias";
 import { MarcarConcluido } from "@/components/trilha/MarcarConcluido";
-import { Logo } from "@/components/ui/Logo";
+import { Marcas } from "@/components/trilha/Marcas";
 import { SeloEvidencia } from "@/components/ui/SeloEvidencia";
 
 function Fontes({ ids }: { ids: string[] }) {
@@ -13,13 +13,8 @@ export default function PaginaRifo() {
   return (
     <main className="mx-auto max-w-2xl px-6 py-16">
       <MarcarConcluido modulo="rifo" />
-      <Link href="/trilha" className="text-sm text-muted hover:text-ink">
-        ← Trilha
-      </Link>
-      <div className="mt-2">
-        <Logo tamanho={32} />
-      </div>
-      <h1 className="titulo mt-4 text-4xl text-ink">Mapa R.I.F.O.</h1>
+      <Marcas />
+      <h1 className="titulo mt-8 text-4xl text-ink sm:text-5xl">Mapa R.I.F.O.</h1>
       <p className="mt-2 text-ink-2">Os quatro métodos do dia da Marina, para levar e usar.</p>
 
       <ol className="mt-8 grid gap-3 sm:grid-cols-2" aria-label="As quatro partes do mapa R.I.F.O.">

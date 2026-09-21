@@ -1,13 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { motion, AnimatePresence } from "motion/react";
 import { NEUROMITOS } from "@/conteudo/neuromitos";
 import { referencia } from "@/conteudo/referencias";
 import { degrau, confirma } from "@/lib/motion";
 import { MarcarConcluido } from "@/components/trilha/MarcarConcluido";
-import { Logo } from "@/components/ui/Logo";
+import { Marcas } from "@/components/trilha/Marcas";
 
 type Resposta = "mito" | "ciencia";
 
@@ -37,14 +36,11 @@ export default function PaginaNeuromitos() {
   }
 
   return (
-    <main className="mx-auto flex min-h-screen max-w-md flex-col px-6 py-16">
+    <main className="mx-auto flex min-h-screen max-w-2xl flex-col px-6 py-12">
       {fim && <MarcarConcluido modulo="neuromitos" />}
-      <Link href="/trilha" className="text-sm text-muted hover:text-ink">
-        ← Trilha
-      </Link>
-      <Logo tamanho={32} />
-      <h1 className="titulo mt-4 text-3xl text-ink">Mito ou ciência?</h1>
-      <p className="mt-2 text-ink-2">8 afirmações populares sobre o cérebro. Quais se sustentam?</p>
+      <Marcas />
+      <h1 className="titulo mt-8 text-4xl text-ink sm:text-5xl">Mito ou ciência?</h1>
+      <p className="mt-3 max-w-prose text-lg leading-relaxed text-ink-2">8 afirmações populares sobre o cérebro. Quais se sustentam?</p>
 
       {!fim && (
         <div className="mt-6 flex gap-1.5" role="img" aria-label={`Pergunta ${indice + 1} de ${NEUROMITOS.length}`}>
@@ -94,7 +90,7 @@ export default function PaginaNeuromitos() {
             </div>
 
             {escolha && (
-              <motion.div initial="entra" animate="ativo" variants={degrau} className="mt-6 rounded-lg border border-line bg-surface-2 p-5">
+              <motion.div initial="entra" animate="ativo" variants={degrau} className="mt-6 rounded-2xl border border-line bg-surface-2 p-5">
                 <p className="font-dados text-[10px] uppercase tracking-[0.14em] text-acento-2">
                   {escolha === item.resposta ? "Isso mesmo" : item.resposta === "ciencia" ? "É ciência" : "É mito"}
                 </p>
@@ -102,7 +98,7 @@ export default function PaginaNeuromitos() {
                 <p className="mt-2 text-xs text-muted">
                   fonte: {item.fontes.map((id) => referencia(id).curta).join(" · ")}
                 </p>
-                <button onClick={proximo} className="mt-5 w-full rounded-md bg-acento px-5 py-3 font-semibold text-white hover:brightness-95">
+                <button onClick={proximo} className="mt-5 w-full rounded-full bg-acento px-6 py-3 text-lg font-bold text-sobre-acento hover:brightness-95">
                   {indice + 1 < NEUROMITOS.length ? "Próxima" : "Ver resultado"}
                 </button>
               </motion.div>

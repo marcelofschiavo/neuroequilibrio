@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Logo } from "@/components/ui/Logo";
+import { Marcas } from "@/components/trilha/Marcas";
 import { lerProgresso } from "@/lib/local";
 import { MODULOS_TRILHA } from "@/conteudo/trilha";
 import { gerarCertificado } from "@/lib/pdf-docs/certificado";
@@ -30,11 +30,8 @@ export default function PaginaCertificado() {
 
   return (
     <main className="mx-auto max-w-md px-6 py-16 text-center">
-      <Link href="/trilha" className="block text-left text-sm text-muted hover:text-ink">
-        ← Trilha
-      </Link>
-      <div className="mt-6 flex justify-center">
-        <Logo tamanho={40} />
+      <div className="flex justify-center">
+        <Marcas voltar={false} />
       </div>
       <h1 className="titulo mt-4 text-3xl text-ink">Certificado</h1>
 

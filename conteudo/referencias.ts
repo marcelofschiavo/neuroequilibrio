@@ -235,6 +235,41 @@ export const REFERENCIAS: Referencia[] = [
     doi: "10.1038/ncomms6380",
     achado: "Contrapeso importante: os padrões cerebrais da dor física e da rejeição social se sobrepõem em parte, mas são distintos — por isso falamos em sobreposição parcial.",
   },
+  {
+    id: "pennebaker1986",
+    curta: "Pennebaker & Beall, J Abnorm Psychol 1986",
+    completa: "Pennebaker, J. W., & Beall, S. K. (1986). Confronting a traumatic event: Toward an understanding of inhibition and disease. Journal of Abnormal Psychology, 95(3), 274–281.",
+    doi: "10.1037/0021-843X.95.3.274",
+    achado: "Estudo pioneiro da escrita expressiva: escrever sobre uma experiência difícil por alguns dias seguidos reduziu as idas ao centro de saúde nos meses seguintes.",
+  },
+  {
+    id: "baikie2005",
+    curta: "Baikie & Wilhelm, Adv Psychiatr Treat 2005",
+    completa: "Baikie, K. A., & Wilhelm, K. (2005). Emotional and physical health benefits of expressive writing. Advances in Psychiatric Treatment, 11(5), 338–346.",
+    doi: "10.1192/apt.11.5.338",
+    achado: "Revisão da escrita expressiva: benefícios de saúde de pequenos a moderados, mais consistentes com escrita repetida em dias diferentes. Não substitui tratamento.",
+  },
+  {
+    id: "lieberman2007",
+    curta: "Lieberman et al., Psychol Sci 2007",
+    completa: "Lieberman, M. D., Eisenberger, N. I., Crockett, M. J., Tom, S. M., Pfeifer, J. H., & Way, B. M. (2007). Putting feelings into words: Affect labeling disrupts amygdala activity in response to affective stimuli. Psychological Science, 18(5), 421–428.",
+    doi: "10.1111/j.1467-9280.2007.01916.x",
+    achado: "Nomear a emoção em palavras reduziu a resposta da amígdala a imagens emocionais e aumentou a atividade do córtex pré-frontal ventrolateral.",
+  },
+  {
+    id: "gollwitzer1999",
+    curta: "Gollwitzer, Am Psychol 1999",
+    completa: "Gollwitzer, P. M. (1999). Implementation intentions: Strong effects of simple plans. American Psychologist, 54(7), 493–503.",
+    doi: "10.1037/0003-066X.54.7.493",
+    achado: "Planos do tipo 'se X, então eu faço Y' aumentam a chance de cumprir uma meta, comparados à intenção genérica de fazê-la.",
+  },
+  {
+    id: "slamecka1978",
+    curta: "Slamecka & Graf, J Exp Psychol Hum Learn Mem 1978",
+    completa: "Slamecka, N. J., & Graf, P. (1978). The generation effect: Delineation of a phenomenon. Journal of Experimental Psychology: Human Learning and Memory, 4(6), 592–604.",
+    doi: "10.1037/0278-7393.4.6.592",
+    achado: "Lembramos melhor o que nós mesmos produzimos (escrevemos, completamos) do que o que apenas lemos ou ouvimos: o 'efeito de geração'.",
+  },
 ];
 
 export function referencia(id: string): Referencia {

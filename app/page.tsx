@@ -1,12 +1,12 @@
 import Link from "next/link";
-import { Logo } from "@/components/ui/Logo";
+import { Marcas } from "@/components/trilha/Marcas";
 import { EVENTO, PALESTRANTE } from "@/conteudo/palestrante";
 
 export default function PaginaInicial() {
   return (
     <main className="min-h-screen bg-bg text-ink">
       <div className="mx-auto flex min-h-screen max-w-2xl flex-col justify-center px-6 py-16">
-        <Logo tamanho={48} />
+        <Marcas voltar={false} altura={44} />
 
         <p className="mt-6 font-dados text-[11px] uppercase tracking-[0.18em] text-acento">
           {EVENTO.ocasiao} · {EVENTO.dataExtenso}

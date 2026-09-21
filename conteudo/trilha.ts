@@ -20,6 +20,8 @@ export const MODULOS_ESSENCIAIS: ModuloTrilha[] = [
 ];
 
 export const MODULOS_EXTRAS: ModuloTrilha[] = [
+  { id: "cerebro", rotulo: "O cérebro da Marina, interativo", desc: "Toque nas quatro regiões ou veja o que acende em cada hora do dia.", href: "/trilha/cerebro" },
+  { id: "escrever", rotulo: "Por que escrever ajuda", desc: "Quatro achados da ciência e três exercícios curtos para praticar agora.", href: "/trilha/escrever" },
   { id: "referencias", rotulo: "Referências científicas", desc: "Todos os estudos citados, com link para o artigo.", href: "/trilha/referencias" },
   { id: "palestrante", rotulo: "Sobre a palestrante", desc: "Priscila Ramos — bio e contatos.", href: "/palestrante" },
 ];

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { TemaProvider } from "@/components/ui/TemaProvider";
-import { Logo } from "@/components/ui/Logo";
+import { LogosParceiras } from "@/components/ui/Logo";
 import { ambiente, escada, degrau } from "@/lib/motion";
 import { EVENTO, PALESTRANTE } from "@/conteudo/palestrante";
 
@@ -39,7 +39,7 @@ export default function PaginaAguardando() {
         />
         <motion.div initial="entra" animate="ativo" variants={escada(0.15, 0.1)} className="relative flex flex-col items-center gap-8">
           <motion.div variants={degrau}>
-            <Logo tamanho={64} branco />
+            <LogosParceiras altura={56} />
           </motion.div>
           <motion.h1 variants={degrau} className="titulo text-palco-titulo text-ink max-w-4xl">
             Neurociências &amp; Equilíbrio Emocional

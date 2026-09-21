@@ -1,10 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { motion } from "motion/react";
 import { MarcarConcluido } from "@/components/trilha/MarcarConcluido";
-import { Logo } from "@/components/ui/Logo";
+import { Marcas } from "@/components/trilha/Marcas";
 import { referencia } from "@/conteudo/referencias";
 
 const FASES = [
@@ -33,16 +32,13 @@ export default function PaginaSuspiro() {
   const ref = referencia("balban2023");
 
   return (
-    <main className="mx-auto flex min-h-screen max-w-md flex-col items-center px-6 py-16 text-center">
+    <main className="mx-auto flex min-h-screen max-w-2xl flex-col items-center px-6 py-12 text-center">
       <MarcarConcluido modulo="suspiro" />
       <div className="w-full">
-        <Link href="/trilha" className="text-sm text-muted hover:text-ink">
-          ← Trilha
-        </Link>
       </div>
-      <Logo tamanho={32} />
-      <h1 className="titulo mt-4 text-3xl text-ink">Suspiro fisiológico</h1>
-      <p className="mt-2 text-ink-2">
+      <Marcas />
+      <h1 className="titulo mt-8 text-4xl text-ink sm:text-5xl">Suspiro fisiológico</h1>
+      <p className="mt-3 max-w-prose text-lg leading-relaxed text-ink-2">
         Duas inspirações pelo nariz — a segunda, curtinha — e uma expiração longa pela boca. A ferramenta
         mais rápida para acalmar o corpo no calor da hora.
       </p>
@@ -71,12 +67,12 @@ export default function PaginaSuspiro() {
         {ativo ? "Parar" : "Começar"}
       </button>
 
-      {ciclos > 0 && <p className="dados mt-4 text-sm text-muted">{ciclos} {ciclos === 1 ? "ciclo completo" : "ciclos completos"}</p>}
+      {ciclos > 0 && <p className="dados mt-4 text-base text-muted">{ciclos} {ciclos === 1 ? "ciclo completo" : "ciclos completos"}</p>}
 
-      <p className="mt-10 text-xs text-muted max-w-xs">
+      <p className="mt-10 text-sm text-muted max-w-xs">
         Funciona sem internet. Pare a qualquer momento se sentir tontura — respire no seu ritmo normal.
       </p>
-      <p className="mt-6 text-xs text-muted max-w-xs">
+      <p className="mt-6 text-sm text-muted max-w-xs">
         {ref.achado}{" "}
         <a href={`https://doi.org/${ref.doi}`} target="_blank" rel="noreferrer" className="underline">
           {ref.curta}

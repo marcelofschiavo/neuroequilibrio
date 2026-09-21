@@ -4,7 +4,7 @@ import { referencia } from "@/conteudo/referencias";
 import { REGIOES } from "@/conteudo/cerebro";
 import { ATOS, CENAS } from "@/conteudo/marina";
 import { MarcarConcluido } from "@/components/trilha/MarcarConcluido";
-import { Logo } from "@/components/ui/Logo";
+import { Marcas } from "@/components/trilha/Marcas";
 import { SeloEvidencia } from "@/components/ui/SeloEvidencia";
 import { Cerebro } from "@/components/palco/Cerebro";
 
@@ -19,13 +19,8 @@ export default function PaginaReveja() {
   return (
     <main className="mx-auto max-w-2xl px-6 py-16">
       <MarcarConcluido modulo="reveja" />
-      <Link href="/trilha" className="text-sm text-muted hover:text-ink">
-        ← Trilha
-      </Link>
-      <div className="mt-2">
-        <Logo tamanho={32} />
-      </div>
-      <h1 className="titulo mt-4 text-4xl text-ink">Reveja o dia da Marina.</h1>
+      <Marcas />
+      <h1 className="titulo mt-8 text-4xl text-ink sm:text-5xl">Reveja o dia da Marina.</h1>
       <p className="mt-2 text-ink-2">
         Quatro atos, das 08:00 às 17:00: o que aconteceu, o que o cérebro estava fazendo e a ciência por trás.
       </p>

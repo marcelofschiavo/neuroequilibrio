@@ -28,7 +28,7 @@ export async function gerarPlanoDia(plano: PlanoDia): Promise<void> {
   doc.setFont("SourceSans3", "bold");
   doc.setFontSize(10);
   doc.setTextColor(CORES_PDF.ACENTO);
-  doc.text("NEUROCIÊNCIAS & EQUILÍBRIO EMOCIONAL · EDC GROUP", largura / 2, y, { align: "center" });
+  doc.text("NEUROCIÊNCIAS & EQUILÍBRIO EMOCIONAL · EDC GROUP + MINDHEART", largura / 2, y, { align: "center" });
   y += 10;
 
   doc.setFontSize(20);

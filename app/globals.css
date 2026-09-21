@@ -188,7 +188,8 @@ body {
   display: flex; justify-content: space-between; align-items: center; gap: 2rem;
 }
 
-h1, h2, h3 { text-wrap: balance; margin: 0; }
+h1, h2, h3 { text-wrap: balance; }
+@layer base { h1, h2, h3 { margin: 0; } }
 
 /* O preflight do Tailwind zera o cursor de <button>; sem isto nenhum botão mostra a mãozinha. */
 button:not(:disabled) { cursor: pointer; }

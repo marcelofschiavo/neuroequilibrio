@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { PALESTRANTE } from "@/conteudo/palestrante";
-import { Logo } from "@/components/ui/Logo";
+import { Marcas } from "@/components/trilha/Marcas";
 import { MarcarConcluido } from "@/components/trilha/MarcarConcluido";
 
 export default function PaginaPalestrante() {
@@ -11,7 +11,7 @@ export default function PaginaPalestrante() {
       <Link href="/trilha" className="text-sm text-muted hover:text-ink">
         ← Trilha
       </Link>
-      <Logo tamanho={32} />
+      <Marcas />
 
       <div className="mt-6 overflow-hidden rounded-2xl border border-line">
         <Image src={PALESTRANTE.foto} alt={PALESTRANTE.nome} width={800} height={1000} className="w-full object-cover" />
