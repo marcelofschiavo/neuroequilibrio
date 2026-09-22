@@ -25,6 +25,14 @@ export function Regra({ slide }: { slide: Slide }) {
   return (
     <div className="flex min-h-0 w-full flex-1 flex-col gap-[2vmin]">
       <Titulo>{REGRA_903.titulo}</Titulo>
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.4 }}
+        className="dados -mt-[1vmin] shrink-0 text-palco-nota font-bold text-acento"
+      >
+        {REGRA_903.subtitulo}
+      </motion.p>
 
       <div className="grid min-h-0 flex-1 grid-cols-[1.5fr_1fr] items-stretch gap-[3vmin]">
         <div className="flex min-h-0 flex-col gap-[2.4vmin]">

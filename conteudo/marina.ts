@@ -141,6 +141,7 @@ export const MODELO_OPERACIONAL = {
 
 export const REGRA_903 = {
   titulo: "Regra 90-3-1: micro-recuperações antes do colapso",
+  subtitulo: "O cérebro opera em ritmos ultradianos.",
   etapas: [
     { valor: "90 min", texto: "de foco intenso" },
     { valor: "3 min", texto: "de pausa deliberada" },
