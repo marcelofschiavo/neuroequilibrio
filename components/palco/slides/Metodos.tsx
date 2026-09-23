@@ -243,16 +243,16 @@ export function Monotarefa({ slide }: { slide: Slide }) {
     <div className="flex min-h-0 w-full flex-1 flex-col gap-[2vmin]">
       <Titulo>{MONOTAREFA.titulo}</Titulo>
 
-      <div className="flex min-h-0 flex-1 flex-col justify-around gap-[2vmin]">
+      <div className="flex min-h-0 flex-1 flex-col gap-[2vmin]">
         {/* A: o caos — a barra inteira */}
-        <div className="flex flex-col gap-2">
-          <p className="text-palco-texto font-black text-alerta">{MONOTAREFA.caos}</p>
+        <div className="flex min-h-0 flex-1 flex-col gap-2">
+          <p className="shrink-0 text-palco-texto font-black text-alerta">{MONOTAREFA.caos}</p>
           <motion.div
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ duration: 1.6, ease: "easeOut" }}
             style={{ transformOrigin: "left" }}
-            className="flex h-[19vh] w-full overflow-hidden rounded-xl border-[3px] border-ink"
+            className="flex min-h-0 flex-1 w-full overflow-hidden rounded-xl border-[3px] border-ink"
             role="img"
             aria-label="Barra longa, cortada por muitas faixas de troca de tarefa"
           >
@@ -260,16 +260,16 @@ export function Monotarefa({ slide }: { slide: Slide }) {
               <span key={i} style={{ width: `${(f.largura / total) * 100}%`, background: f.troca ? "var(--alerta)" : f.cor }} />
             ))}
           </motion.div>
-          <p className="flex items-center gap-2 text-palco-nota font-bold text-alerta">
+          <p className="flex shrink-0 items-center gap-2 text-palco-nota font-bold text-alerta">
             <span aria-hidden className="inline-block h-[1em] w-3 rounded-sm bg-alerta" />
             faixas vermelhas = custo de troca
           </p>
         </div>
 
         {/* B: a monotarefa — mais curta; o pontilhado mostra o que sobra */}
-        <div className="flex flex-col gap-2">
-          <p className="text-palco-texto font-black text-acento">{MONOTAREFA.sequencial}</p>
-          <div className="relative flex h-[19vh] w-full">
+        <div className="flex min-h-0 flex-1 flex-col gap-2">
+          <p className="shrink-0 text-palco-texto font-black text-acento">{MONOTAREFA.sequencial}</p>
+          <div className="relative flex min-h-0 flex-1 w-full">
             <div className="flex h-full w-[66%] overflow-hidden rounded-xl border-[3px] border-ink">
               {MONOTAREFA.blocos.map((b, i) => (
                 <motion.span
